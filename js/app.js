@@ -14,6 +14,10 @@ const state = {
   saveMode: false,
   saveName: null,
   challengeMode: false,
+  examMode: false,
+  examPreview: false,
+  examAnswers: [],
+  examReviewFilter: "all",
 };
 
 let timerInterval = null;
@@ -45,9 +49,16 @@ function updatePoolLabels() {
     `Wybierz tryb i liczbę pytań — dostępna pula: <strong>${pool}</strong>.`;
   document.getElementById("quick-pool-max").textContent = pool;
   document.getElementById("save-pool-max").textContent = pool;
+  document.getElementById("exam-pool-max").textContent = pool;
 }
 
-const screens = ["screen-loading", "screen-start", "screen-quiz", "screen-result"];
+const screens = [
+  "screen-loading",
+  "screen-start",
+  "screen-quiz",
+  "screen-result",
+  "screen-exam-result",
+];
 
 function show(screenId) {
   screens.forEach((id) => {
@@ -122,7 +133,9 @@ function startChallengeTimer() {
 
     if (timerRemaining <= 0) {
       stopChallengeTimer();
-      if (!state.answered) {
+      if (state.examMode) {
+        examAdvance();
+      } else if (!state.answered) {
         checkAnswer();
       }
     }
@@ -195,12 +208,17 @@ function applySavePayload(data) {
 
 function updateSaveBadge() {
   const badge = document.getElementById("save-badge");
-  if (state.saveMode && state.saveName) {
+  if (state.saveMode && state.saveName && !state.examMode) {
     badge.textContent = `💾 ${state.saveName}`;
     badge.classList.remove("hidden");
   } else {
     badge.classList.add("hidden");
   }
+}
+
+function updateExamBadge() {
+  const badge = document.getElementById("exam-badge");
+  badge.classList.toggle("hidden", !state.examMode);
 }
 
 function refreshSaveList() {
@@ -266,17 +284,51 @@ function resetGameState() {
   state.index = 0;
   state.correctCount = 0;
   state.answered = false;
+  state.examMode = false;
+  state.examPreview = false;
+  state.examAnswers = [];
+  state.examReviewFilter = "all";
+}
+
+function evaluateAnswer(selected, options) {
+  let isCorrect = true;
+  options.forEach((opt, i) => {
+    if (opt.correct && !selected.includes(i)) isCorrect = false;
+    if (!opt.correct && selected.includes(i)) isCorrect = false;
+  });
+  return isCorrect;
 }
 
 function beginQuiz() {
   syncChallengeFromUI();
   show("screen-quiz");
   updateSaveBadge();
+  updateExamBadge();
   if (state.index >= state.questions.length) {
-    showRoundResult();
+    if (state.examMode) {
+      showExamResult();
+    } else {
+      showRoundResult();
+    }
   } else {
     showQuestion();
   }
+}
+
+function startExamQuiz() {
+  const parsed = parseQuestionCount(document.getElementById("exam-count-input").value);
+  if (parsed.error) {
+    alert(parsed.error);
+    return;
+  }
+
+  state.saveMode = false;
+  state.saveName = null;
+  resetGameState();
+  state.examMode = true;
+  state.examPreview = document.getElementById("exam-preview-mode").checked;
+  state.questions = pickQuestions(parsed.count);
+  beginQuiz();
 }
 
 function startQuickQuiz() {
@@ -342,10 +394,17 @@ function showQuestion() {
   const feedback = document.getElementById("feedback");
   feedback.textContent = "";
   feedback.className = "feedback";
+  feedback.classList.toggle("hidden", state.examMode);
 
   const btn = document.getElementById("action-btn");
-  btn.textContent = "Sprawdź odpowiedź";
-  btn.className = "btn btn-check";
+  const isLast = state.index === state.questions.length - 1;
+  if (state.examMode) {
+    btn.textContent = isLast ? "Zakończ egzamin" : "Następne pytanie";
+    btn.className = isLast ? "btn btn-exam" : "btn btn-next";
+  } else {
+    btn.textContent = "Sprawdź odpowiedź";
+    btn.className = "btn btn-check";
+  }
 
   const item = state.questions[state.index];
   const correct = item.correct_answers || [];
@@ -355,7 +414,11 @@ function showQuestion() {
     ...incorrect.map((ans) => ({ text: ans, correct: false })),
   ]);
 
-  document.getElementById("round-label").textContent = `Runda ${state.round}`;
+  if (state.examMode) {
+    document.getElementById("round-label").textContent = "Egzamin";
+  } else {
+    document.getElementById("round-label").textContent = `Runda ${state.round}`;
+  }
   document.getElementById("progress-label").textContent =
     `Pytanie ${state.index + 1} z ${state.questions.length}`;
   document.getElementById("question-text").textContent = item.question;
@@ -373,7 +436,12 @@ function showQuestion() {
     container.appendChild(div);
   });
 
-  startChallengeTimer();
+  if (state.challengeMode) {
+    startChallengeTimer();
+  } else {
+    stopChallengeTimer();
+    updateTimerDisplay();
+  }
 }
 
 function getSelected() {
@@ -387,12 +455,7 @@ function checkAnswer() {
   stopChallengeTimer();
 
   const selected = getSelected();
-
-  let isCorrect = true;
-  state.currentOptions.forEach((opt, i) => {
-    if (opt.correct && !selected.includes(i)) isCorrect = false;
-    if (!opt.correct && selected.includes(i)) isCorrect = false;
-  });
+  const isCorrect = evaluateAnswer(selected, state.currentOptions);
 
   if (isCorrect) {
     state.correctCount += 1;
@@ -423,6 +486,140 @@ function checkAnswer() {
   const btn = document.getElementById("action-btn");
   btn.textContent = "Następne pytanie";
   btn.className = "btn btn-next";
+}
+
+function recordExamAnswer() {
+  const selected = getSelected();
+  const isCorrect = evaluateAnswer(selected, state.currentOptions);
+  state.examAnswers[state.index] = {
+    question: state.questions[state.index].question,
+    options: state.currentOptions.map((o) => ({ text: o.text, correct: o.correct })),
+    selected,
+    isCorrect,
+  };
+  return isCorrect;
+}
+
+function examAdvance() {
+  if (state.answered) return;
+  stopChallengeTimer();
+  recordExamAnswer();
+  state.index += 1;
+
+  if (state.index < state.questions.length) {
+    showQuestion();
+  } else {
+    showExamResult();
+  }
+}
+
+function showExamResult() {
+  stopChallengeTimer();
+
+  state.correctCount = state.examAnswers.filter((a) => a?.isCorrect).length;
+  const total = state.questions.length;
+  const wrongCount = total - state.correctCount;
+  const pct = total ? Math.round((state.correctCount / total) * 100) : 0;
+
+  show("screen-exam-result");
+  document.getElementById("exam-score-text").textContent =
+    `Wynik: ${state.correctCount} / ${total} (${pct}%)`;
+  document.getElementById("exam-result-note").textContent =
+    wrongCount === 0
+      ? "Doskonały wynik — wszystkie odpowiedzi poprawne!"
+      : `Błędnych odpowiedzi: ${wrongCount}`;
+
+  const reviewSection = document.getElementById("exam-review-section");
+  if (state.examPreview) {
+    reviewSection.classList.remove("hidden");
+    state.examReviewFilter = "all";
+    document.querySelectorAll(".exam-filter-btn").forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.filter === "all");
+    });
+    refreshExamReviewList();
+  } else {
+    reviewSection.classList.add("hidden");
+  }
+}
+
+function getFilteredExamAnswers() {
+  return state.examAnswers
+    .map((answer, index) => ({ ...answer, index }))
+    .filter((answer) => {
+      if (state.examReviewFilter === "correct") return answer.isCorrect;
+      if (state.examReviewFilter === "wrong") return !answer.isCorrect;
+      return true;
+    });
+}
+
+function refreshExamReviewList() {
+  const filtered = getFilteredExamAnswers();
+  const select = document.getElementById("exam-review-select");
+  select.innerHTML = "";
+
+  if (!filtered.length) {
+    const opt = document.createElement("option");
+    opt.value = "";
+    opt.textContent = "— brak pytań w tej kategorii —";
+    select.appendChild(opt);
+    select.disabled = true;
+    document.getElementById("exam-review-detail").innerHTML =
+      '<p class="field-hint" style="text-align:center;margin:0">Brak pytań do wyświetlenia.</p>';
+    return;
+  }
+
+  filtered.forEach((item) => {
+    const opt = document.createElement("option");
+    opt.value = String(item.index);
+    const mark = item.isCorrect ? "✓" : "✗";
+    const shortQ = item.question.length > 55
+      ? `${item.question.slice(0, 55)}…`
+      : item.question;
+    opt.textContent = `${mark} Pyt. ${item.index + 1}: ${shortQ}`;
+    select.appendChild(opt);
+  });
+  select.disabled = false;
+  renderExamReviewDetail(+select.value);
+}
+
+function renderExamReviewDetail(questionIndex) {
+  const answer = state.examAnswers[questionIndex];
+  const detail = document.getElementById("exam-review-detail");
+  if (!answer) {
+    detail.innerHTML = "";
+    return;
+  }
+
+  const statusClass = answer.isCorrect ? "ok" : "bad";
+  const statusText = answer.isCorrect ? "Poprawna odpowiedź" : "Błędna odpowiedź";
+
+  let optionsHtml = "";
+  answer.options.forEach((opt, i) => {
+    const classes = ["option", "disabled"];
+    if (opt.correct) classes.push("correct");
+    if (answer.selected.includes(i) && !opt.correct) classes.push("wrong");
+    if (answer.selected.includes(i)) classes.push("user-pick");
+    const checked = answer.selected.includes(i) ? "checked" : "";
+    optionsHtml += `
+      <label class="${classes.join(" ")}">
+        <input type="checkbox" disabled ${checked}>
+        <span>${escapeHtml(opt.text)}</span>
+      </label>`;
+  });
+
+  detail.innerHTML = `
+    <span class="exam-status-tag ${statusClass}">${statusText}</span>
+    <div class="question-text">${escapeHtml(answer.question)}</div>
+    ${optionsHtml}
+  `;
+}
+
+function setExamReviewFilter(filter) {
+  state.examReviewFilter = filter;
+  document.querySelectorAll(".exam-filter-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.filter === filter);
+  });
+  refreshExamReviewList();
 }
 
 function nextQuestion() {
@@ -483,6 +680,10 @@ function retryWrong() {
 }
 
 function onAction() {
+  if (state.examMode) {
+    examAdvance();
+    return;
+  }
   if (!state.answered) {
     checkAnswer();
   } else {
@@ -497,9 +698,14 @@ function showStartScreen() {
   state.saveMode = false;
   state.saveName = null;
   state.challengeMode = false;
+  state.examMode = false;
+  state.examPreview = false;
+  state.examAnswers = [];
   updateSaveBadge();
+  updateExamBadge();
   refreshSaveList();
   document.getElementById("save-name-input").value = "";
+  document.getElementById("feedback").classList.remove("hidden");
   show("screen-start");
 }
 
@@ -514,6 +720,14 @@ function toggleSavePanel() {
 // —— Init ——
 
 document.getElementById("btn-quick-start").addEventListener("click", startQuickQuiz);
+document.getElementById("btn-exam-start").addEventListener("click", startExamQuiz);
+document.getElementById("btn-exam-finish").addEventListener("click", showStartScreen);
+document.getElementById("exam-review-select").addEventListener("change", (e) => {
+  renderExamReviewDetail(+e.target.value);
+});
+document.querySelectorAll(".exam-filter-btn").forEach((btn) => {
+  btn.addEventListener("click", () => setExamReviewFilter(btn.dataset.filter));
+});
 document.getElementById("btn-toggle-save-mode").addEventListener("click", toggleSavePanel);
 document.getElementById("btn-create-save").addEventListener("click", () => {
   startSaveQuiz(document.getElementById("save-name-input").value);
@@ -531,6 +745,9 @@ document.getElementById("save-count-input").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     startSaveQuiz(document.getElementById("save-name-input").value);
   }
+});
+document.getElementById("exam-count-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") startExamQuiz();
 });
 document.getElementById("action-btn").addEventListener("click", onAction);
 

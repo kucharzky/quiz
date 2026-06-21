@@ -107,6 +107,37 @@
             </p>
           </div>
         </div>
+
+        <div class="mode-card mode-card-exam">
+          <div class="mode-card-header">
+            <span class="mode-icon">📝</span>
+            <div>
+              <h3>Egzamin</h3>
+              <p class="mode-desc">Sprawdzenie wiedzy — wynik dopiero na końcu. Bez podpowiedzi w trakcie.</p>
+            </div>
+          </div>
+          <div class="count-field">
+            <label class="field-label" for="exam-count-input">Liczba pytań</label>
+            <input
+              type="text"
+              id="exam-count-input"
+              class="field-input"
+              placeholder="np. 20"
+              autocomplete="off"
+              inputmode="numeric"
+            >
+            <p class="field-hint">Wpisz liczbę od 1 do <span id="exam-pool-max">105</span>. Puste pole = wszystkie pytania z puli.</p>
+          </div>
+          <label class="exam-preview-toggle" for="exam-preview-mode">
+            <input type="checkbox" id="exam-preview-mode">
+            <span class="challenge-toggle-box" aria-hidden="true"></span>
+            <span class="exam-preview-text">
+              <span class="exam-preview-title">Tryb podglądu</span>
+              <span class="exam-preview-desc">Po egzaminie przejrzyj listę pytań z poprawnymi i błędnymi odpowiedziami.</span>
+            </span>
+          </label>
+          <button class="btn btn-exam" id="btn-exam-start">Rozpocznij egzamin</button>
+        </div>
       </div>
     </div>
 
@@ -115,6 +146,7 @@
         <div class="header-bar">
           <span id="round-label">Runda 1</span>
           <span id="save-badge" class="save-badge hidden"></span>
+          <span id="exam-badge" class="exam-badge hidden">Egzamin</span>
           <span id="challenge-timer" class="challenge-timer hidden">
             <span class="timer-icon" aria-hidden="true">⏱</span>
             <span id="timer-display">1:30</span>
@@ -133,6 +165,26 @@
       <div class="score" id="score-text"></div>
       <div id="result-message"></div>
       <button class="btn hidden" id="result-btn"></button>
+    </div>
+
+    <div id="screen-exam-result" class="card hidden">
+      <h1>Koniec egzaminu</h1>
+      <div class="score" id="exam-score-text"></div>
+      <p class="exam-result-note" id="exam-result-note"></p>
+
+      <div id="exam-review-section" class="hidden">
+        <div class="save-divider"><span>Podgląd odpowiedzi</span></div>
+        <div class="exam-review-filters">
+          <button type="button" class="exam-filter-btn active" data-filter="all">Wszystkie</button>
+          <button type="button" class="exam-filter-btn" data-filter="correct">Poprawne</button>
+          <button type="button" class="exam-filter-btn" data-filter="wrong">Błędne</button>
+        </div>
+        <label class="field-label" for="exam-review-select">Wybierz pytanie</label>
+        <select id="exam-review-select" class="field-select"></select>
+        <div id="exam-review-detail" class="exam-review-detail"></div>
+      </div>
+
+      <button class="btn btn-end" id="btn-exam-finish">Powrót do menu</button>
     </div>
 
     <div id="screen-loading" class="card">
