@@ -312,10 +312,6 @@ function getSelected() {
 
 function checkAnswer() {
   const selected = getSelected();
-  if (!selected.length) {
-    alert("Proszę zaznaczyć przynajmniej jedną odpowiedź!");
-    return;
-  }
 
   let isCorrect = true;
   state.currentOptions.forEach((opt, i) => {
