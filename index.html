@@ -9,20 +9,77 @@
 </head>
 <body>
   <div class="container">
-    <div id="screen-start" class="card">
+    <div id="screen-start" class="card hidden">
       <h1>Witaj w Teście!</h1>
       <p class="subtitle">Zostanie wylosowanych <strong>105</strong> pytań z puli 105.</p>
       <div class="warning">
         Uwaga: Niektóre pytania mają więcej niż jedną poprawną odpowiedź.<br>
         Musisz zaznaczyć wszystkie poprawne opcje!
       </div>
-      <button class="btn btn-start" id="btn-start">Rozpocznij Test</button>
+
+      <div class="mode-section">
+        <h2 class="mode-heading">Wybierz tryb rozgrywki</h2>
+
+        <div class="mode-card">
+          <div class="mode-card-header">
+            <span class="mode-icon">⚡</span>
+            <div>
+              <h3>Szybki Start</h3>
+              <p class="mode-desc">Gra bez zapisu. Odświeżenie strony resetuje postęp.</p>
+            </div>
+          </div>
+          <button class="btn btn-start" id="btn-quick-start">Rozpocznij bez zapisu</button>
+        </div>
+
+        <div class="mode-card mode-card-save">
+          <button type="button" class="mode-toggle" id="btn-toggle-save-mode" aria-expanded="false">
+            <span class="mode-icon">💾</span>
+            <div class="mode-toggle-text">
+              <h3>Tryb Zapisu</h3>
+              <p class="mode-desc">Zapisuj postęp w przeglądarce i wracaj później.</p>
+            </div>
+            <span class="mode-chevron" id="save-chevron">▼</span>
+          </button>
+
+          <div id="save-panel" class="save-panel hidden">
+            <div class="save-block">
+              <label class="field-label" for="save-name-input">Nowy zapis</label>
+              <input
+                type="text"
+                id="save-name-input"
+                class="field-input"
+                placeholder="Np. Sesja 1, Powtórka przed egzaminem…"
+                maxlength="64"
+                autocomplete="off"
+              >
+              <button class="btn btn-save-new" id="btn-create-save">Utwórz nowy zapis i zacznij</button>
+            </div>
+
+            <div class="save-divider" id="save-load-section">
+              <span>Wczytaj istniejący zapis</span>
+            </div>
+
+            <div class="save-block" id="save-load-block">
+              <label class="field-label" for="save-select">Zapisane gry</label>
+              <select id="save-select" class="field-select" disabled>
+                <option value="">— brak zapisów —</option>
+              </select>
+              <button class="btn btn-save-load" id="btn-load-save" disabled>Wczytaj zapis</button>
+            </div>
+
+            <p class="save-empty-hint hidden" id="save-empty-hint">
+              Nie masz jeszcze żadnych zapisów. Utwórz nowy powyżej.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="screen-quiz" class="hidden">
       <div class="card">
         <div class="header-bar">
           <span id="round-label">Runda 1</span>
+          <span id="save-badge" class="save-badge hidden"></span>
           <span id="progress-label">Pytanie 1 z 105</span>
         </div>
         <div class="question-text" id="question-text"></div>
