@@ -11,7 +11,7 @@
   <div class="container">
     <div id="screen-start" class="card hidden">
       <h1>Witaj w Teście!</h1>
-      <p class="subtitle">Zostanie wylosowanych <strong>105</strong> pytań z puli 105.</p>
+      <p class="subtitle" id="pool-subtitle">Ładowanie puli pytań…</p>
       <div class="warning">
         Uwaga: Niektóre pytania mają więcej niż jedną poprawną odpowiedź.<br>
         Musisz zaznaczyć wszystkie poprawne opcje!
@@ -28,6 +28,18 @@
               <p class="mode-desc">Gra bez zapisu. Odświeżenie strony resetuje postęp.</p>
             </div>
           </div>
+          <div class="count-field">
+            <label class="field-label" for="quick-count-input">Liczba pytań</label>
+            <input
+              type="text"
+              id="quick-count-input"
+              class="field-input"
+              placeholder="np. 20"
+              autocomplete="off"
+              inputmode="numeric"
+            >
+            <p class="field-hint">Wpisz liczbę od 1 do <span id="quick-pool-max">105</span>. Puste pole = wszystkie pytania z puli.</p>
+          </div>
           <button class="btn btn-start" id="btn-quick-start">Rozpocznij bez zapisu</button>
         </div>
 
@@ -42,6 +54,18 @@
           </button>
 
           <div id="save-panel" class="save-panel hidden">
+            <div class="save-block">
+              <label class="field-label" for="save-count-input">Liczba pytań</label>
+              <input
+                type="text"
+                id="save-count-input"
+                class="field-input"
+                placeholder="np. 20"
+                autocomplete="off"
+                inputmode="numeric"
+              >
+              <p class="field-hint">Wpisz liczbę od 1 do <span id="save-pool-max">105</span>. Puste pole = wszystkie pytania z puli.</p>
+            </div>
             <div class="save-block">
               <label class="field-label" for="save-name-input">Nowy zapis</label>
               <input

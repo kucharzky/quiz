@@ -239,6 +239,20 @@ h1 { font-size: 1.6rem; text-align: center; margin-bottom: 12px; }
 
 .save-block { margin-top: 14px; }
 
+.count-field { margin-bottom: 4px; }
+
+.field-hint {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: -4px 0 10px;
+  line-height: 1.4;
+}
+
+.field-hint strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
 .field-label {
   display: block;
   font-size: 0.85rem;

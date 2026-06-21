@@ -1,4 +1,3 @@
-const QUESTION_COUNT = 105;
 const STORAGE_KEY = "quiz_saves";
 
 const state = {
@@ -13,6 +12,34 @@ const state = {
   saveMode: false,
   saveName: null,
 };
+
+function getPoolSize() {
+  return state.allQuestions.length;
+}
+
+function parseQuestionCount(raw) {
+  const value = String(raw ?? "").trim();
+  if (!value) {
+    return { count: getPoolSize() };
+  }
+  const n = Number.parseInt(value, 10);
+  if (Number.isNaN(n) || n < 1) {
+    return { error: `Podaj liczbę od 1 do ${getPoolSize()}, lub zostaw puste dla wszystkich pytań.` };
+  }
+  return { count: Math.min(n, getPoolSize()) };
+}
+
+function pickQuestions(count) {
+  return sample(state.allQuestions, count);
+}
+
+function updatePoolLabels() {
+  const pool = getPoolSize();
+  document.getElementById("pool-subtitle").innerHTML =
+    `Wybierz tryb i liczbę pytań — dostępna pula: <strong>${pool}</strong>.`;
+  document.getElementById("quick-pool-max").textContent = pool;
+  document.getElementById("save-pool-max").textContent = pool;
+}
 
 const screens = ["screen-loading", "screen-start", "screen-quiz", "screen-result"];
 
@@ -133,7 +160,7 @@ function refreshSaveList() {
       const opt = document.createElement("option");
       opt.value = name;
       const save = saves[name];
-      const total = save?.questions?.length ?? QUESTION_COUNT;
+      const total = save?.questions?.length ?? getPoolSize();
       const at = Math.min(save?.index ?? 0, total);
       const pts = save?.correctCount ?? 0;
       opt.textContent = `${name} (pyt. ${at}/${total}, ${pts} pkt)`;
@@ -154,10 +181,11 @@ async function loadQuestions() {
   const res = await fetch(path);
   if (!res.ok) throw new Error("Nie udało się wczytać pytań");
   const data = await res.json();
-  if (data.length < QUESTION_COUNT) {
-    throw new Error(`Za mało pytań (${data.length}), wymagane: ${QUESTION_COUNT}`);
+  if (!data.length) {
+    throw new Error("Brak pytań w bazie.");
   }
   state.allQuestions = data;
+  updatePoolLabels();
 }
 
 // —— Start gry ——
@@ -182,10 +210,16 @@ function beginQuiz() {
 }
 
 function startQuickQuiz() {
+  const parsed = parseQuestionCount(document.getElementById("quick-count-input").value);
+  if (parsed.error) {
+    alert(parsed.error);
+    return;
+  }
+
   state.saveMode = false;
   state.saveName = null;
   resetGameState();
-  state.questions = sample(state.allQuestions, QUESTION_COUNT);
+  state.questions = pickQuestions(parsed.count);
   beginQuiz();
 }
 
@@ -193,6 +227,11 @@ function startSaveQuiz(name) {
   const trimmed = name.trim();
   if (!trimmed) {
     alert("Podaj nazwę zapisu.");
+    return;
+  }
+  const parsed = parseQuestionCount(document.getElementById("save-count-input").value);
+  if (parsed.error) {
+    alert(parsed.error);
     return;
   }
   const saves = readSaves();
@@ -204,7 +243,7 @@ function startSaveQuiz(name) {
   state.saveMode = true;
   state.saveName = trimmed;
   resetGameState();
-  state.questions = sample(state.allQuestions, QUESTION_COUNT);
+  state.questions = pickQuestions(parsed.count);
   persistSave();
   beginQuiz();
 }
@@ -409,6 +448,14 @@ document.getElementById("btn-load-save").addEventListener("click", loadSaveQuiz)
 document.getElementById("save-name-input").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     startSaveQuiz(e.target.value);
+  }
+});
+document.getElementById("quick-count-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") startQuickQuiz();
+});
+document.getElementById("save-count-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    startSaveQuiz(document.getElementById("save-name-input").value);
   }
 });
 document.getElementById("action-btn").addEventListener("click", onAction);
