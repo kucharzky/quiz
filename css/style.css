@@ -340,3 +340,107 @@ h1 { font-size: 1.6rem; text-align: center; margin-bottom: 12px; }
 .header-bar {
   flex-wrap: wrap;
 }
+
+/* —— Challenge —— */
+.challenge-bar {
+  margin: 20px 0 8px;
+  border: 2px solid #ffe0b2;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fff8e1 0%, #fff3e0 100%);
+  padding: 14px 16px;
+}
+
+.challenge-toggle {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.challenge-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.challenge-toggle-box {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fb8c00;
+  border-radius: 6px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  background: #fff;
+  position: relative;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.challenge-toggle input:checked + .challenge-toggle-box {
+  background: #fb8c00;
+  border-color: #e65100;
+}
+
+.challenge-toggle input:checked + .challenge-toggle-box::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.challenge-toggle-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.challenge-toggle-title {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #e65100;
+}
+
+.challenge-toggle-desc {
+  font-size: 0.85rem;
+  color: #8d6e63;
+  line-height: 1.4;
+}
+
+.challenge-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #1565c0;
+  background: #e3f2fd;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 2px solid #90caf9;
+}
+
+.challenge-timer.timer-warning {
+  color: #e65100;
+  background: #fff3e0;
+  border-color: #ffb74d;
+}
+
+.challenge-timer.timer-critical {
+  color: #c62828;
+  background: #ffebee;
+  border-color: #ef5350;
+  animation: timer-pulse 0.8s ease-in-out infinite;
+}
+
+@keyframes timer-pulse {
+  50% { transform: scale(1.04); }
+}
+
+.timer-icon { font-size: 0.9rem; }

@@ -1,4 +1,6 @@
 const STORAGE_KEY = "quiz_saves";
+const CHALLENGE_PREF_KEY = "quiz_challenge_enabled";
+const CHALLENGE_SECONDS = 90;
 
 const state = {
   allQuestions: [],
@@ -11,7 +13,11 @@ const state = {
   answered: false,
   saveMode: false,
   saveName: null,
+  challengeMode: false,
 };
+
+let timerInterval = null;
+let timerRemaining = CHALLENGE_SECONDS;
 
 function getPoolSize() {
   return state.allQuestions.length;
@@ -66,6 +72,69 @@ function escapeHtml(text) {
   const d = document.createElement("div");
   d.textContent = text;
   return d.innerHTML;
+}
+
+// —— Challenge timer ——
+
+function syncChallengeFromUI() {
+  state.challengeMode = document.getElementById("challenge-mode").checked;
+}
+
+function formatTimer(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function stopChallengeTimer() {
+  if (timerInterval !== null) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
+
+function updateTimerDisplay() {
+  const timerEl = document.getElementById("challenge-timer");
+  const display = document.getElementById("timer-display");
+  if (!state.challengeMode) {
+    timerEl.classList.add("hidden");
+    return;
+  }
+  timerEl.classList.remove("hidden");
+  display.textContent = formatTimer(timerRemaining);
+  timerEl.classList.toggle("timer-warning", timerRemaining > 0 && timerRemaining <= 20);
+  timerEl.classList.toggle("timer-critical", timerRemaining > 0 && timerRemaining <= 10);
+}
+
+function startChallengeTimer() {
+  stopChallengeTimer();
+  if (!state.challengeMode) {
+    updateTimerDisplay();
+    return;
+  }
+
+  timerRemaining = CHALLENGE_SECONDS;
+  updateTimerDisplay();
+
+  timerInterval = setInterval(() => {
+    timerRemaining -= 1;
+    updateTimerDisplay();
+
+    if (timerRemaining <= 0) {
+      stopChallengeTimer();
+      if (!state.answered) {
+        checkAnswer();
+      }
+    }
+  }, 1000);
+}
+
+function initChallengeToggle() {
+  const checkbox = document.getElementById("challenge-mode");
+  checkbox.checked = localStorage.getItem(CHALLENGE_PREF_KEY) === "1";
+  checkbox.addEventListener("change", () => {
+    localStorage.setItem(CHALLENGE_PREF_KEY, checkbox.checked ? "1" : "0");
+  });
 }
 
 // —— localStorage ——
@@ -200,6 +269,7 @@ function resetGameState() {
 }
 
 function beginQuiz() {
+  syncChallengeFromUI();
   show("screen-quiz");
   updateSaveBadge();
   if (state.index >= state.questions.length) {
@@ -302,6 +372,8 @@ function showQuestion() {
     });
     container.appendChild(div);
   });
+
+  startChallengeTimer();
 }
 
 function getSelected() {
@@ -311,6 +383,9 @@ function getSelected() {
 }
 
 function checkAnswer() {
+  if (state.answered) return;
+  stopChallengeTimer();
+
   const selected = getSelected();
 
   let isCorrect = true;
@@ -362,6 +437,7 @@ function nextQuestion() {
 }
 
 function showRoundResult() {
+  stopChallengeTimer();
   show("screen-result");
   document.getElementById("result-title").textContent = `Koniec Rundy ${state.round}`;
   document.getElementById("score-text").textContent =
@@ -417,8 +493,10 @@ function onAction() {
 // —— Menu ——
 
 function showStartScreen() {
+  stopChallengeTimer();
   state.saveMode = false;
   state.saveName = null;
+  state.challengeMode = false;
   updateSaveBadge();
   refreshSaveList();
   document.getElementById("save-name-input").value = "";
@@ -458,6 +536,7 @@ document.getElementById("action-btn").addEventListener("click", onAction);
 
 loadQuestions()
   .then(() => {
+    initChallengeToggle();
     refreshSaveList();
     showStartScreen();
   })

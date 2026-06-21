@@ -17,6 +17,17 @@
         Musisz zaznaczyć wszystkie poprawne opcje!
       </div>
 
+      <div class="challenge-bar">
+        <label class="challenge-toggle" for="challenge-mode">
+          <input type="checkbox" id="challenge-mode">
+          <span class="challenge-toggle-box" aria-hidden="true"></span>
+          <span class="challenge-toggle-content">
+            <span class="challenge-toggle-title">🏆 Tryb Challenge</span>
+            <span class="challenge-toggle-desc">Na każdym pytaniu limit 1:30 — po czasie odpowiedź zostaje automatycznie zatwierdzona.</span>
+          </span>
+        </label>
+      </div>
+
       <div class="mode-section">
         <h2 class="mode-heading">Wybierz tryb rozgrywki</h2>
 
@@ -104,6 +115,10 @@
         <div class="header-bar">
           <span id="round-label">Runda 1</span>
           <span id="save-badge" class="save-badge hidden"></span>
+          <span id="challenge-timer" class="challenge-timer hidden">
+            <span class="timer-icon" aria-hidden="true">⏱</span>
+            <span id="timer-display">1:30</span>
+          </span>
           <span id="progress-label">Pytanie 1 z 105</span>
         </div>
         <div class="question-text" id="question-text"></div>
