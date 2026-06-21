@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Quiz BSK – 105 pytań z bezpieczeństwa informacji">
+  <title>Quiz BSK</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div id="screen-start" class="card">
+      <h1>Witaj w Teście!</h1>
+      <p class="subtitle">Zostanie wylosowanych <strong>105</strong> pytań z puli 105.</p>
+      <div class="warning">
+        Uwaga: Niektóre pytania mają więcej niż jedną poprawną odpowiedź.<br>
+        Musisz zaznaczyć wszystkie poprawne opcje!
+      </div>
+      <button class="btn btn-start" id="btn-start">Rozpocznij Test</button>
+    </div>
+
+    <div id="screen-quiz" class="hidden">
+      <div class="card">
+        <div class="header-bar">
+          <span id="round-label">Runda 1</span>
+          <span id="progress-label">Pytanie 1 z 105</span>
+        </div>
+        <div class="question-text" id="question-text"></div>
+        <div id="options"></div>
+        <div class="feedback" id="feedback"></div>
+        <button class="btn btn-check" id="action-btn">Sprawdź odpowiedź</button>
+      </div>
+    </div>
+
+    <div id="screen-result" class="card hidden">
+      <h1 id="result-title">Koniec Rundy</h1>
+      <div class="score" id="score-text"></div>
+      <div id="result-message"></div>
+      <button class="btn hidden" id="result-btn"></button>
+    </div>
+
+    <div id="screen-loading" class="card">
+      <p class="loading">Ładowanie pytań…</p>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1224 @@
+[
+  {
+    "question": "Jakie główne warunki kryptograficzne musi spełniać bezpieczna funkcja haszująca?",
+    "correct_answers": [
+      "Odporność na kolizje (Collision resistance) – obliczeniowo niemożliwe jest znalezienie dwóch dowolnych, różnych wiadomości, które po zahaszowaniu dadzą ten sam skrót.",
+      "Odporność na przeciwobraz (Preimage resistance) – mając dany skrót (hasz), obliczeniowo niemożliwe jest odtworzenie z niego oryginalnej wiadomości.",
+      "Odporność na drugi przeciwobraz (Second preimage resistance) – mając daną wiadomość, obliczeniowo niemożliwe jest znalezienie innej, która dałaby identyczny skrót."
+    ],
+    "incorrect_answers": [
+      "Odwracalność (Reversibility) – bezpieczna funkcja haszująca pozwala na łatwe odtworzenie wiadomości ze skrótu po podaniu odpowiedniego hasła.",
+      "Zgodność kompresji bezstratnej – funkcja haszująca kompresuje pliki, zachowując możliwość ich późniejszego rozpakowania w locie."
+    ]
+  },
+  {
+    "question": "Czym jest mechanizm Perfect Forward Secrecy (PFS)?",
+    "correct_answers": [
+      "To właściwość protokołów kryptograficznych gwarantująca, że kompromitacja długoterminowego klucza w przyszłości nie pozwoli na odszyfrowanie wcześniej przechwyconych sesji.",
+      "PFS opiera się na generowaniu unikalnych, efemerycznych (jednorazowych) kluczy sesyjnych dla każdego nowego połączenia (np. używając DHE lub ECDHE)."
+    ],
+    "incorrect_answers": [
+      "Jest to mechanizm ochrony przed atakami DDoS, w którym każda paczka sieciowa otrzymuje swój własny adres IP.",
+      "PFS polega na używaniu jednego, bardzo długiego i niezmiennego klucza statycznego, który nigdy nie jest odnawiany."
+    ]
+  },
+  {
+    "question": "Jaka jest różnica między bezpieczeństwem obliczeniowym (computational) a informacyjno-teoretycznym (information-theoretic)?",
+    "correct_answers": [
+      "Bezpieczeństwo obliczeniowe zakłada, że złamanie systemu wymagałoby nierealnego nakładu czasu i zasobów przy obecnej technologii.",
+      "Bezpieczeństwo informacyjno-teoretyczne oznacza system absolutnie bezpieczny, odporny nawet na ataki z użyciem nieskończonej mocy obliczeniowej."
+    ],
+    "incorrect_answers": [
+      "Bezpieczeństwo obliczeniowe dotyczy wyłącznie fizycznego zabezpieczenia serwerów przed kradzieżą.",
+      "Bezpieczeństwo informacyjno-teoretyczne opiera się wyłącznie na długości klucza RSA - im dłuższy, tym system jest teoretycznie bezpieczniejszy."
+    ]
+  },
+  {
+    "question": "Czym jest Perfect Secrecy (doskonałe utajnienie) i jaki algorytm je zapewnia?",
+    "correct_answers": [
+      "Jest to stan matematyczny, w którym szyfrogram nie dostarcza atakującemu żadnych informacji na temat tekstu jawnego.",
+      "Algorytmem, który w praktyce zapewnia takie bezpieczeństwo, jest One-Time Pad (OTP - szyfr z kluczem jednorazowym)."
+    ],
+    "incorrect_answers": [
+      "Zapewnia to nowoczesny algorytm AES-256 w trybie CBC.",
+      "Perfect Secrecy oznacza, że system nie wymaga już dystrybucji żadnych kluczy kryptograficznych pomiędzy stronami."
+    ]
+  },
+  {
+    "question": "W jakim celu wymyślono infrastrukturę PKI (Public Key Infrastructure) i jakie problemy ona rozwiązuje?",
+    "correct_answers": [
+      "Rozwiązuje problem bezpiecznej dystrybucji kluczy publicznych poprzez powiązanie ich z tożsamością za pomocą certyfikatów cyfrowych.",
+      "Zapobiega atakom Man-in-the-Middle (MitM) gwarantując autentyczność strony.",
+      "Zapewnia poufność, integralność, uwierzytelnienie i niezaprzeczalność transakcji."
+    ],
+    "incorrect_answers": [
+      "PKI wymyślono wyłącznie w celu szyfrowania baz danych SQL na dyskach twardych.",
+      "Jest to protokół routingu dynamicznego zastępujący BGP i OSPF w sieciach korporacyjnych."
+    ]
+  },
+  {
+    "question": "Dlaczego utrzymanie systemu PKI jest skomplikowane i kosztowne?",
+    "correct_answers": [
+      "Wymaga rygorystycznego zarządzania pełnym cyklem życia kluczy i certyfikatów (generowanie, przechowywanie w HSM, odnawianie, listy CRL/OCSP).",
+      "Wymaga wysoce bezpiecznej infrastruktury (np. wyłączone z sieci Root CA), audytów i dedykowanego personelu."
+    ],
+    "incorrect_answers": [
+      "Wymaga codziennego formatowania serwerów w celu usunięcia zdezaktualizowanych kluczy prywatnych użytkowników.",
+      "Infrastruktura PKI opiera się wyłącznie na płatnych licencjach za każdy wysłany w sieci pakiet."
+    ]
+  },
+  {
+    "question": "Jakie role w systemie PKI pełnią Registration Authority (RA) oraz Certificate Authority (CA)?",
+    "correct_answers": [
+      "RA zajmuje się weryfikacją tożsamości użytkownika lub urządzenia ubiegającego się o certyfikat i waliduje wniosek (CSR).",
+      "CA to centralny urząd, który wystawia (podpisuje własnym kluczem prywatnym) i unieważnia certyfikaty cyfrowe."
+    ],
+    "incorrect_answers": [
+      "RA samodzielnie podpisuje certyfikaty publiczne bez udziału serwerów CA.",
+      "CA służy do generowania kluczy prywatnych dla użytkowników końcowych i wysyłania ich mailem."
+    ]
+  },
+  {
+    "question": "Jak definiuje się zaufanie (trust) w kontekście certyfikatów?",
+    "correct_answers": [
+      "Zaufanie to delegowanie wiarygodności – ufamy certyfikatowi serwera, bo weryfikujemy, że został wystawiony przez zaufany przez nas nadrzędny urząd (Łańcuch Zaufania)."
+    ],
+    "incorrect_answers": [
+      "Zaufanie polega na automatycznym akceptowaniu każdego ruchu z nieznanych adresów IP, dopóki nie zostanie wykryty wirus.",
+      "Jest to konfiguracja firewalla wyłączająca całkowicie skanowanie pakietów między dwoma zaufanymi węzłami."
+    ]
+  },
+  {
+    "question": "Z jakich głównych etapów składa się diagram sekwencyjny SSL/TLS Handshake?",
+    "correct_answers": [
+      "Faza Hello (wymiana obsługiwanych wersji, szyfrów i przesyłanie certyfikatu serwera).",
+      "Wymiana Kluczy (weryfikacja certyfikatu i wymiana materiału kryptograficznego).",
+      "Faza Finished (weryfikacja wyliczonych kluczy sesyjnych i rozpoczęcie szyfrowanej transmisji)."
+    ],
+    "incorrect_answers": [
+      "Faza negocjacji BGP, w której serwer ustala najlepszą trasę routingu dla sesji SSL.",
+      "Wymiana kluczy odbywa się dopiero po zakończeniu fazy Finished i przesłaniu danych początkowych tekstem jawnym."
+    ]
+  },
+  {
+    "question": "Gdzie wykorzystujemy protokół IKE (Internet Key Exchange) i dlaczego ma architekturę dwufazową?",
+    "correct_answers": [
+      "IKE jest używany w sieciach IPsec VPN do uwierzytelniania stron i negocjowania kluczy szyfrujących.",
+      "IKE Phase 1 ustanawia bezpieczny kanał kontrolny (IKE SA).",
+      "IKE Phase 2 używa kanału z Fazy 1 do generowania docelowych tuneli przesyłających dane (IPsec SA), co oszczędza zasoby procesora przy wielu tunelach."
+    ],
+    "incorrect_answers": [
+      "IKE jest stosowany głównie do nawiązywania nieszyfrowanych połączeń w sieciach gościnnych Wi-Fi.",
+      "Faza 2 polega na zestawieniu rezerwowego połączenia modemowego w przypadku awarii sieci głównej."
+    ]
+  },
+  {
+    "question": "Jakie są kluczowe różnice między IPSec VPN a SSL VPN?",
+    "correct_answers": [
+      "IPsec VPN operuje w warstwie sieciowej (L3) i zazwyczaj wymaga dedykowanego klienta, zabezpieczając wszystkie protokoły nad IP.",
+      "SSL VPN operuje w warstwie aplikacji/transportowej, umożliwia granulowany dostęp często z poziomu przeglądarki (clientless)."
+    ],
+    "incorrect_answers": [
+      "IPsecVPN działa wyłącznie wewnątrz przeglądarek internetowych i nie pozwala na łączenie całych lokalizacji (Site-to-Site).",
+      "SSL VPN szyfruje dane za pomocą technologii sprzętowych i z reguły wymaga instalacji fizycznego tokena w komputerze pracownika."
+    ]
+  },
+  {
+    "question": "W jakich scenariuszach stosujemy Destination NAT (DNAT), a w jakich Source NAT (SNAT)?",
+    "correct_answers": [
+      "DNAT jest używany do publikowania usług z sieci wewnętrznej do Internetu (tzw. przekierowanie portów).",
+      "SNAT służy do maskowania adresów IP sieci LAN, by umożliwić pracownikom dostęp do Internetu pod jednym zewnętrznym IP."
+    ],
+    "incorrect_answers": [
+      "DNAT służy do ukrywania adresów stacji roboczych pracowników podczas surfowania po stronach WWW.",
+      "SNAT jest jedynym rozwiązaniem pozwalającym użytkownikom zewnętrznym podłączyć się do firmowego serwera pocztowego."
+    ]
+  },
+  {
+    "question": "W jakiej kolejności firewalle zazwyczaj wykonują polityki bezpieczeństwa (np. DoS Policy vs Security Policy)?",
+    "correct_answers": [
+      "DoS Policy jest wykonywana w pierwszej kolejności (często sprzętowo na wczesnym etapie), aby szybko odrzucić ataki wolumetryczne.",
+      "Security Policy (L3/L4/L7) wykonywana jest później, po wstępnym odfiltrowaniu zjawisk DoS, gdyż wymaga głębszej analizy stanu sesji."
+    ],
+    "incorrect_answers": [
+      "Security Policy przetwarza pakiety jako pierwsza, a DoS Policy sprawdza ruch wyłącznie na końcu wychodzenia ze sprzętu.",
+      "Obydwie polityki uruchamiane są zawsze idealnie równolegle i wynik zależy od tego, która przetworzy pakiet szybciej."
+    ]
+  },
+  {
+    "question": "Czym jest Split Tunneling w konfiguracjach VPN?",
+    "correct_answers": [
+      "To mechanizm kierujący przez bezpieczny tunel VPN tylko ruch do sieci korporacyjnej, a pozostały ruch leci bezpośrednio do Internetu.",
+      "Zaletą jest oszczędność pasma centrali, wadą – potencjalne ryzyko ominięcia firmowych systemów ochrony brzegowej dla ruchu ogólnego."
+    ],
+    "incorrect_answers": [
+      "Jest to podwójne szyfrowanie jednego połączenia VPN w celu zapewnienia kompatybilności z IPSec i SSL jednocześnie.",
+      "Polega na fizycznym podzieleniu kabla światłowodowego w celu zrównoważenia obciążenia dwóch połączeń WAN."
+    ]
+  },
+  {
+    "question": "Jakie akcje i progi konfiguruje się w politykach DoS dla ataków typu SYN, ICMP lub UDP Flooding?",
+    "correct_answers": [
+      "Konfiguruje się próg alertowy (Threshold Alert), który uruchamia logowanie wystąpienia anomalii.",
+      "Ustawia się próg blokowania (Threshold Drop/Block), po którym firewall odrzuca pakiety lub włącza mechanizmy łagodzące (np. SYN cookies)."
+    ],
+    "incorrect_answers": [
+      "Ustawia się progi zapotrzebowania mocy dla chłodzenia sprzętu na wypadek ataku rozgrzewającego procesor.",
+      "Firewall od razu blokuje pierwsze wystąpienie pakietu UDP w sieci niezależnie od ustawionych jakichkolwiek progów."
+    ]
+  },
+  {
+    "question": "Co się dzieje z adresacją, gdy wyłączy się główny firewall (Primary) w klastrze HA?",
+    "correct_answers": [
+      "Zapasowy sprzęt (Secondary) bezprzerwowo przejmuje wirtualne adresy IP klastra.",
+      "W L2 wykorzystywane są wirtualne MAC (vMAC) lub wysyłane są pakiety Gratuitous ARP (GARP), by zaktualizować tablice na switchach."
+    ],
+    "incorrect_answers": [
+      "Zapasowy firewall samodzielnie zgłasza się do serwera DHCP po wylosowanie nowej puli adresów IP.",
+      "Urządzenia w sieci LAN automatycznie resetują swoje karty sieciowe z powodu przerwania dzierżawy IP."
+    ]
+  },
+  {
+    "question": "Czym charakteryzują się firewalle bezstanowe (stateless)?",
+    "correct_answers": [
+      "Sprawdzają każdy pakiet oddzielnie na podstawie L3/L4, bez zapisywania informacji o pełnym stanie sesji TCP.",
+      "Są niezwykle szybkie jako proste filtry, ale bardzo podatne na ataki (np. spoofing) i kiepskie przy asymetrycznym routingu."
+    ],
+    "incorrect_answers": [
+      "Pamiętają każdą historyczną sesję z ostatnich 30 dni w pamięci RAM, dlatego są bardzo wolne.",
+      "Analizują ruch na poziomie siódmej warstwy (aplikacji), weryfikując kod nagłówków HTTP i zapytań bazodanowych."
+    ]
+  },
+  {
+    "question": "Jakie podejście opisuje zasada Least Privilege (Zasada najmniejszych uprzywilejowań)?",
+    "correct_answers": [
+      "Nadawanie użytkownikom lub usługom uprawnień ograniczonych absolutnie do niezbędnego minimum wymaganego do pracy.",
+      "Jest to fundament architektury Zero Trust, minimalizujący ryzyko rozprzestrzeniania się intruza po sieci (lateral movement)."
+    ],
+    "incorrect_answers": [
+      "Zasada polegająca na dawaniu uprawnień administracyjnych wszystkim pracownikom, aby odciążyć dział Helpdesku.",
+      "Podejście w routingu, gdzie każdy ruter z automatu przesyła tablicę routingu sąsiadowi na najmniej uprzywilejowanym porcie."
+    ]
+  },
+  {
+    "question": "Jak systemy Data Leak Prevention (DLP) radzą sobie z analizą plików zagnieżdżonych w archiwach?",
+    "correct_answers": [
+      "Otwierają archiwa (np. ZIP w RAR), jednak posiadają limity głębokości dekompresji dla ochrony procesora.",
+      "Ze względu na ograniczenia ochrony przed ZIP bomb, system może czasem przepuścić (nie zablokować) ekstremalnie zagnieżdżone pliki."
+    ],
+    "incorrect_answers": [
+      "System DLP gwarantuje zablokowanie absolutnie każdego pliku zagnieżdżonego dzięki nielimitowanej mocy dekompresji.",
+      "Pliki w formatach archiwów są całkowicie ignorowane przez systemy DLP i przepuszczane domyślnie jako ruch zaufany."
+    ]
+  },
+  {
+    "question": "Czym jest i do czego służy strefa DMZ (Demilitarized Zone)?",
+    "correct_answers": [
+      "Jest to fizycznie lub logicznie wydzielona podsieć dla publicznie dostępnych serwerów (WWW, DNS, poczta).",
+      "Chroni ona główną wewnętrzną sieć LAN poprzez izolację w razie skutecznego ataku i przejęcia publicznego serwera."
+    ],
+    "incorrect_answers": [
+      "To strefa bez żadnych zapór sieciowych (bez firewalli), służąca do przeprowadzania nielegalnych pobrań plików P2P.",
+      "Służy do przechowywania wyłączonych serwerów, które czekają na zezłomowanie lub naprawę w dziale IT."
+    ]
+  },
+  {
+    "question": "Jak rozszyfrować skrót i czym zajmują się platformy SOAR?",
+    "correct_answers": [
+      "To skrót od Security Orchestration, Automation, and Response. Platformy te służą do automatyzacji reakcji na incydenty (np. playbooks).",
+      "Zajmują się koordynowaniem reakcji między wieloma urządzeniami oraz korzystają z danych Threat Intelligence."
+    ],
+    "incorrect_answers": [
+      "Skrót to Standard Over-Air Routing, platforma do konfiguracji sieci komórkowych 5G.",
+      "Zajmują się wyłącznie szyfrowaniem logów wysyłanych pomiędzy ruterami brzegowymi."
+    ]
+  },
+  {
+    "question": "Jak technologia Machine Learning (ML) wspiera rozwiązania typu firewall i antywirus?",
+    "correct_answers": [
+      "Pomaga analizować pakiety danych w poszukiwaniu anomalii i odchyleń od normy (behawioryzmu).",
+      "Wspomaga bardzo skutecznie wykrywanie nowych zagrożeń i ataków typu Zero-Day, których nie ma w statycznych bazach sygnatur."
+    ],
+    "incorrect_answers": [
+      "Zastępuje całkowicie procesory sprzętowe w firewallach mechanizmami mechanicznymi.",
+      "Wymaga od każdego pracownika firmy ręcznego trenowania modelu przez pół godziny dziennie."
+    ]
+  },
+  {
+    "question": "Czym objawia się wirtualizacja Firewalla (technologie takie jak vSYS, VDOM)?",
+    "correct_answers": [
+      "Podziałem jednej fizycznej platformy sprzętowej na wiele całkowicie niezależnych, logicznych zapór, z własnymi interfejsami, routingiem i politykami."
+    ],
+    "incorrect_answers": [
+      "Polega to na umieszczeniu firewalla w okularach wirtualnej rzeczywistości dla administratorów systemów.",
+      "Jest to proces polegający wyłącznie na przeniesieniu lokalnego firewalla do publicznej chmury AWS w postaci maszyny EC2."
+    ]
+  },
+  {
+    "question": "Kto z zasady jest zwolniony z restrykcyjnych wymogów dyrektyw bezpieczeństwa DORA lub NIS2?",
+    "correct_answers": [
+      "Najczęściej zwolnione są z nich mikroprzedsiębiorstwa, chyba że pełnią krytyczne funkcje wspierające infrastrukturę państwa."
+    ],
+    "incorrect_answers": [
+      "Całkowicie zwolnione są globalne instytucje bankowe i operatorzy telekomunikacyjni ze względu na własne procedury.",
+      "Zwolnione są zawsze spółki notowane na nowojorskiej giełdzie papierów wartościowych (NYSE)."
+    ]
+  },
+  {
+    "question": "Czego precyzyjnie dotyczy międzynarodowa norma ISO/IEC 27017?",
+    "correct_answers": [
+      "Norma ta dotyczy wytycznych z zakresu kontroli bezpieczeństwa informacji dla usług związanych z chmurą obliczeniową (Cloud Computing)."
+    ],
+    "incorrect_answers": [
+      "Dotyczy wymiarów mechanicznych gniazd RJ45 i parametrów okablowania światłowodowego.",
+      "Jest to certyfikat poświadczający wdrożenie oprogramowania ERP w sektorze budowlanym."
+    ]
+  },
+  {
+    "question": "Czym różnią się od siebie koncepcje: Perimeter Security, Defense in Depth oraz Mikrosegmentacja?",
+    "correct_answers": [
+      "Perimeter Security zakłada istnienie silnego fizycznego brzegu sieci.",
+      "Defense in Depth polega na nakładaniu na siebie wielu warstw zabezpieczeń.",
+      "Mikrosegmentacja wiąże polityki zabezpieczeń z konkretnymi procesami/maszynami w Datacenter, blokując ataki wewnątrz (lateral movement)."
+    ],
+    "incorrect_answers": [
+      "Defense in Depth zakłada redukcję wszystkich zabezpieczeń wyłącznie do jednego zewnętrznego firewalla.",
+      "Mikrosegmentacja to technika uszkadzania kabli UTP na mniejsze segmenty miedziane w celu zmylenia hakerów."
+    ]
+  },
+  {
+    "question": "Do czego służą systemy klasy SIEM?",
+    "correct_answers": [
+      "Centralnie gromadzą, normalizują i korelują logi ze wszystkich węzłów infrastruktury IT.",
+      "Zapewniają alertowanie, wykrywanie incydentów na podstawie skojarzeń danych z wielu miejsc i ułatwiają pracę SOC."
+    ],
+    "incorrect_answers": [
+      "SIEM to fizyczne dyski twarde w technologii SSD zaprojektowane tylko do nagrywania wideo z kamer CCTV IP.",
+      "Rozwiązanie SIEM służy wyłącznie do automatycznego generowania polityk NAT na zaporze brzegowej."
+    ]
+  },
+  {
+    "question": "Czym różni się SSL Inspection w trybie Forward Proxy od Inbound Inspection?",
+    "correct_answers": [
+      "Forward Proxy służy do deszyfracji ruchu wychodzącego od użytkowników wewnętrznych do Internetu (klient jest wewnętrzny, serwer zewnętrzny).",
+      "Inbound Inspection służy do deszyfracji ruchu przychodzącego z zewnątrz do serwerów znajdujących się w sieci wewnętrznej (np. w DMZ)."
+    ],
+    "incorrect_answers": [
+      "Forward Proxy dotyczy deszyfracji ruchu przychodzącego z Internetu, a Inbound Inspection ruchu wychodzącego z LAN.",
+      "Obydwa tryby służą do tego samego, ale Forward Proxy używa certyfikatów samopodpisanych, a Inbound certyfikatów zaufanych CA."
+    ]
+  },
+  {
+    "question": "Dlaczego przy konfiguracji SSL Forward Proxy na zaporze wymagane jest utworzenie certyfikatu typu Forward Trust Certificate?",
+    "correct_answers": [
+      "Aby zapora mogła dynamicznie (w locie) tworzyć i podpisywać certyfikaty zastępcze dla docelowych stron internetowych.",
+      "Pozwala to zaporze działać jako zaufane Man-in-the-Middle i deszyfrować ruch przed jego weryfikacją."
+    ],
+    "incorrect_answers": [
+      "Certyfikat ten jest potrzebny wyłącznie do uwierzytelniania samej zapory podczas komunikacji z serwerem NTP.",
+      "Jest on używany wyłącznie do szyfrowania połączeń VPN (IPsec) pomiędzy dwoma zaporami."
+    ]
+  },
+  {
+    "question": "Jakie są główne różnice pomiędzy Data Filtering a File Blocking na zaporach Palo Alto?",
+    "correct_answers": [
+      "File Blocking blokuje całe pliki na podstawie ich typu (np. .exe, .zip), niezależnie od tego, jakie dane zawierają.",
+      "Data Filtering skanuje zawartość plików pod kątem konkretnych wzorców (np. numery kart kredytowych, PESEL) i reaguje tylko w przypadku dopasowania."
+    ],
+    "incorrect_answers": [
+      "File Blocking analizuje metadane plików, a Data Filtering patrzy tylko na rozszerzenie pliku.",
+      "Nie ma różnicy, obie nazwy oznaczają ten sam mechanizm, ale w różnych wersjach systemu operacyjnego."
+    ]
+  },
+  {
+    "question": "Jaka jest kluczowa różnica pomiędzy profilami ochrony Classified i Aggregate DoS Protection w rozwiązaniach Palo Alto?",
+    "correct_answers": [
+      "Profil Classified nakłada ograniczenia i śledzi sesje oddzielnie dla każdego pojedynczego serwera (adresu IP) w strefie.",
+      "Profil Aggregate nakłada ogólny, wspólny limit na cały ruch kierowany do wszystkich chronionych urządzeń w danej strefie jako całości."
+    ],
+    "incorrect_answers": [
+      "Profil Classified chroni przed atakami aplikacyjnymi (L7), a Aggregate przed wolumetrycznymi (L3/L4).",
+      "Profil Aggregate dotyczy tylko ataków wewnętrznych z sieci LAN, a Classified ataków z Internetu."
+    ]
+  },
+  {
+    "question": "Do czego służy funkcja Captive Portal w rozwiązaniach Fortinet i Palo Alto?",
+    "correct_answers": [
+      "Zapewnia interfejs (stronę WWW), na której użytkownik musi się uwierzytelnić przed uzyskaniem dostępu do sieci docelowej (np. do Internetu).",
+      "Umożliwia urządzeniu powiązanie adresu IP z tożsamością użytkownika (User-ID) w przypadku, gdy uwierzytelnianie przezroczyste (np. przez Active Directory) nie jest możliwe."
+    ],
+    "incorrect_answers": [
+      "Służy do automatycznego generowania i przypisywania adresów IP poprzez DHCP.",
+      "Jest to portal przeznaczony wyłącznie do zarządzania urządzeniem (zapory) przez administratora."
+    ]
+  },
+  {
+    "question": "W jaki sposób można uzyskać administracyjny dostęp awaryjny (out-of-band) do nowej zapory FortiGate, omijając sieć IP?",
+    "correct_answers": [
+      "Za pomocą dedykowanego fizycznego portu Console, łącząc się kablem szeregowym i używając programu typu PuTTY (np. interfejs COM/Serial)."
+    ],
+    "incorrect_answers": [
+      "Wykorzystując darmowe oprogramowanie klienckie TeamViewer instalowane bezpośrednio w systemie operacyjnym zapory.",
+      "Łącząc się przez stronę WWW pod adresem 8.8.8.8 przyznawanym każdej nowej zaporze w chmurze."
+    ]
+  },
+  {
+    "question": "Jak zachowują się adresy sprzętowe (MAC) w klastrze High Availability (HA) w trybie Active-Passive na zaporze (np. FortiGate, Palo Alto)?",
+    "correct_answers": [
+      "Klaster korzysta z wirtualnych adresów MAC (vMAC), które w razie awarii podstawowego węzła są bezprzerwowowo przejmowane przez węzeł zapasowy.",
+      "Aby zaktualizować tablice adresów MAC na przełącznikach (switchach), po przełączeniu (failover) wysyłane są puste ramki Gratuitous ARP (GARP)."
+    ],
+    "incorrect_answers": [
+      "Po awarii sieć traci dostęp do zapory na 5 minut, dopóki administrator ręcznie nie zresetuje tabel MAC w każdym przełączniku.",
+      "Adresy MAC ulegają stałej zmianie, dlatego wymagane jest włączenie na stacjach roboczych klienta DHCP w trybie ciągłego odpytywania."
+    ]
+  },
+  {
+    "question": "Do czego służy mechanizm SYN Cookies stosowany przy ochronie przed atakami typu DoS?",
+    "correct_answers": [
+      "Chroni serwery przed wyczerpaniem zasobów (atakiem SYN Flood) poprzez niealokowanie w pamięci struktury sesji dla pakietu SYN przed potwierdzeniem.",
+      "Urządzenie chroniące w locie oblicza skrót, odsyła go w pakiecie SYN/ACK i weryfikuje poprawność w nadchodzącym pakiecie ACK, co pozwala odróżnić sfałszowany adres od poprawnego inicjatora."
+    ],
+    "incorrect_answers": [
+      "Jest to ciasteczko (cookie) instalowane w przeglądarce WWW, aby spowolnić zbyt szybkie odświeżanie stron przez użytkowników.",
+      "Mechanizm ten służy wyłącznie do monitorowania, ile czasu dany pracownik przebywał na stronach bankowych i przekazuje to do serwera Proxy."
+    ]
+  },
+  {
+    "question": "Jakie działanie wykonuje komenda 'execute factoryreset' na urządzeniach FortiGate?",
+    "correct_answers": [
+      "Usuwa całą bieżącą konfigurację użytkownika i przywraca wszystkie ustawienia do stanu domyślnego z momentu opuszczenia fabryki.",
+      "Po wykonaniu komendy urządzenie resetuje się (uruchamia ponownie) z ustawieniami domyślnymi (np. domyślny adres IP na porcie LAN)."
+    ],
+    "incorrect_answers": [
+      "Zapisuje bieżącą (aktywną) konfigurację do trwałej pamięci flash jako profil zapasowy (backup).",
+      "Wyłącza zaporę ze względów bezpieczeństwa i wymusza ręczne przełączenie przycisku zasilania."
+    ]
+  },
+  {
+    "question": "Co pozwala osiągnąć powiązanie 'User-ID' (Identity-Based Security) w zaporach sieciowych nowej generacji (NGFW)?",
+    "correct_answers": [
+      "Pozwala zaporze na identyfikację konkretnych osób, a nie tylko urządzeń na podstawie ich adresów IP, co umożliwia egzekwowanie granulowanych polityk (np. ograniczenia czasowe dla stażystów).",
+      "Dzięki niemu widoczność ruchu i raporty z incydentów obejmują nazwy z Active Directory, co ułatwia audyt i monitorowanie użycia Internetu."
+    ],
+    "incorrect_answers": [
+      "Technologia ta wymaga wbudowania czytników linii papilarnych bezpośrednio w porty miedziane przełączników sieciowych.",
+      "Zmienia w locie adresy MAC użytkowników w sieci lokalnej, ukrywając ich identyfikatory urządzeń w Internecie."
+    ]
+  },
+  {
+    "question": "Security association",
+    "correct_answers": [
+      "has the following characteristics: (a) is pre-configured by an authorized individual or dynamically agreed upon between the involved entities; (b) describes the security services or secrets",
+      "Is considered security key management"
+    ],
+    "incorrect_answers": [
+      "Is a relationship between two or more entities that describes security relation between entities"
+    ]
+  },
+  {
+    "question": "Key management",
+    "correct_answers": [
+      "Is dealing with the generation, exchange, storage, use, and replacement of keys as well as handling of the secret keys between users, applications or systems"
+    ],
+    "incorrect_answers": []
+  },
+  {
+    "question": "Key establishment / Key agreement",
+    "correct_answers": [
+      "Is an approach to cryptographic keying material whereby two or more parties can mutually agree on a key in such a way that both influence the outcome"
+    ],
+    "incorrect_answers": [
+      "Is the process and a method to agree on a cryptographic keying material manually by steps in the absence of automatic methods or protocols",
+      "Is a fallback method to agree on the keying material over a trusted channel, in the absence of automatic methods or specialized protocols"
+    ]
+  },
+  {
+    "question": "Cryptographic Key Derivation Function (KDF)",
+    "correct_answers": [],
+    "incorrect_answers": [
+      "Is a secure random function which generates a random key in the situation of absence of key reference material",
+      "Is a cryptographic function for key derivation often used in conjunction with non-secret parameters to derive one or more keys from a common secret value"
+    ]
+  },
+  {
+    "question": "Exponential arithmetic modulo prime",
+    "correct_answers": [
+      "Effectively serves as a trap-door operation - a mathematical function, which are easy to compute, but hard to invert"
+    ],
+    "incorrect_answers": [
+      "Provides unconditional information-theoretic security level as opposed to computational security level"
+    ]
+  },
+  {
+    "question": "Diffie-Hellman Key Agreement in its simplest form",
+    "correct_answers": [
+      "Is non-authenticated key agreement protocol",
+      "Provides the basis for a variety of authenticated key exchange protocols",
+      "Is used to provide forward secrecy in Transport Layer Security's ephemeral modes, referred to as EDH or DHE depending on the cipher suite",
+      "Requires two messages between Alice and Bob"
+    ],
+    "incorrect_answers": [
+      "Requires three messages between Alice and Bob"
+    ]
+  },
+  {
+    "question": "Perfect forward secrecy is a property of a secure communication protocol",
+    "correct_answers": [
+      "In which compromise of long term secret keys does not compromise past session keys",
+      "Based on two keys: long term pre-shared key (or PKI key) and another, short term Diffie-Hellman key"
+    ],
+    "incorrect_answers": [
+      "Which ensures that the communications is secure, once the shared secret key has been established"
+    ]
+  },
+  {
+    "question": "The following is the characteristics of a public key cryptosystem",
+    "correct_answers": [
+      "a set of algorithms that are easy to process in one direction but difficult to process in the reverse direction"
+    ],
+    "incorrect_answers": []
+  },
+  {
+    "question": "Exponential arithmetic over finite fields modulo large prime number",
+    "correct_answers": [
+      "Are mathematical means to implement a one-way (trapdoor) function",
+      "Are based on the Discrete Logarithm Problem"
+    ],
+    "incorrect_answers": [
+      "Are used because they enable fast computations",
+      "Are effective, because of difficulty of factorization"
+    ]
+  },
+  {
+    "question": "In TLS",
+    "correct_answers": [
+      "a master secret is obtained from the initial handshake"
+    ],
+    "incorrect_answers": [
+      "the initial handshake can provide server authentication, client authentication or no authentication at all"
+    ]
+  },
+  {
+    "question": "TLS protocol handshake begins with",
+    "correct_answers": [
+      "Client Hello message"
+    ],
+    "incorrect_answers": [
+      "Start Key Exchange message",
+      "Server Hello message"
+    ]
+  },
+  {
+    "question": "TLS protocol requires public key infrastructure",
+    "correct_answers": [
+      "because PKI certificates are used to provide authenticity of an endpoint",
+      "because certificates provide a substitute (digital equivalent) of real-life identity-based authentication"
+    ],
+    "incorrect_answers": [
+      "The dependence of TLS on PKI is for historical reasons"
+    ]
+  },
+  {
+    "question": "Computation of a TLS master secret key is carried out",
+    "correct_answers": [
+      "On a Client",
+      "Using Nonce random values as input"
+    ],
+    "incorrect_answers": [
+      "On a Server",
+      "Using pre-master secret as an input"
+    ]
+  },
+  {
+    "question": "Computation of a TLS master secret key",
+    "correct_answers": [
+      "Is carried out using the formula with the following major input components: KDF = PRF(client random value + server random value + pre-master secret)"
+    ],
+    "incorrect_answers": [
+      "Is carried out in order to use the resulting key for encryption and integrity protection"
+    ]
+  },
+  {
+    "question": "TLS session resumption mechanism",
+    "correct_answers": [
+      "Avoids full TLS handshake"
+    ],
+    "incorrect_answers": [
+      "Requires full TLS handshake"
+    ]
+  },
+  {
+    "question": "IPSec protocol",
+    "correct_answers": [
+      "Can provide authentication of message",
+      "Can provide integrity protection for packet payload and header",
+      "Can provide confidentiality",
+      "Can provide non-repudiation for data packets"
+    ],
+    "incorrect_answers": []
+  },
+  {
+    "question": "Which of the following best decribes ISAKMP",
+    "correct_answers": [
+      "ISAKMP is a negotiation protocol that lets two hosts agree on how to build an IPsec security association"
+    ],
+    "incorrect_answers": [
+      "ISAKMP is a negotiation protocol that sets up an IPSec-protected secure channel for user data"
+    ]
+  },
+  {
+    "question": "Internet Key Exchange",
+    "correct_answers": [
+      "Is for the dynamic establishing of cryptographic keys",
+      "Is a companion protocol for IPSec",
+      "Is a protocol to determine and agree parameters of a protected communications channel"
+    ],
+    "incorrect_answers": [
+      "Is a security association and key management protocol"
+    ]
+  },
+  {
+    "question": "Czym jest przedsiębiorstwo oraz misja przedsiębiorstwa w świetle teorii organizacji?",
+    "correct_answers": [
+      "Przedsiębiorstwo to twór organizacyjny dysponujący określonymi zasobami, które są wykorzystywane do osiągania celu ustanowionego przez właściciela.",
+      "Misja przedsiębiorstwa to powód, dla którego dana organizacja funkcjonuje."
+    ],
+    "incorrect_answers": [
+      "Przedsiębiorstwo to wyłącznie zbiór systemów informatycznych działających bez udziału czynnika ludzkiego i kapitałowego.",
+      "Misja przedsiębiorstwa to krótkoterminowy plan finansowy mający na celu wyłącznie minimalizację podatków w danym kwartale."
+    ]
+  },
+  {
+    "question": "Jakie są kluczowe cechy charakterystyczne przedsiębiorstwa?",
+    "correct_answers": [
+      "Prowadzenie działalności w sposób trwały oraz posiadanie określonej struktury właścicielskiej i zasobów kapitałowe.",
+      "Samodzielność decyzyjna i finansowa.",
+      "Stanowi system otwarty pozostający w interakcji z otoczeniem oraz system dynamiczny, nastawiony na uczenie się.",
+      "Zaspokaja potrzeby innych podmiotów."
+    ],
+    "incorrect_answers": [
+      "Działanie w sposób wyłącznie doraźny, krótkotrwały i pozbawiony struktury kapitałowej.",
+      "Stanowi system całkowicie zamknięty i statyczny, odizolowany od wpływów i interakcji z otoczeniem."
+    ]
+  },
+  {
+    "question": "Jak definiuje się pojęcia przedsiębiorcy oraz przedsiębiorczości?",
+    "correct_answers": [
+      "Przedsiębiorca to właściciel umiejętnie łączący czynniki produkcji oraz przenoszący zasoby ekonomiczne z obszaru niższej na obszar wyższej efektywności.",
+      "Przedsiębiorczość to zdolność do podejmowania oraz rozwiązywania w sposób twórczy i nowatorski problemów przy świadomości związanego z tym ryzyka.",
+      "Przedsiębiorczość to umiejętność wykorzystywania pojawiających się szans i okazji oraz elastycznego przystosowania się do zmieniających się warunków."
+    ],
+    "incorrect_answers": [
+      "Przedsiębiorca to osoba unikająca wszelkiego ryzyka rynkowego, skupiona wyłącznie na zachowaniu status quo.",
+      "Przedsiębiorczość to ścisłe i sztywne trzymanie się procedur bez możliwości adaptacji do zmian otoczenia."
+    ]
+  },
+  {
+    "question": "Czym jest korporacja oraz proces w kontekście biznesowym?",
+    "correct_answers": [
+      "Korporacja to organizacja lub grupa powiązanych organizacji realizujących wspólny zestaw celów i posiadająca wspólne główne właściwości.",
+      "Proces to zbiór czynności powiązanych zależnościami przyczynowo-skutkowymi, gdzie rezultaty działań poprzedzających są wejściami działań następujących po nich."
+    ],
+    "incorrect_answers": [
+      "Korporacja to dowolna jednoosobowa działalność gospodarcza niemająca powiązań strukturalnych.",
+      "Proces to chaotyczny i losowy zbiór działań niezwiązanych żadnymi zależnościami wejścia-wyjścia."
+    ]
+  },
+  {
+    "question": "Co definiuje architekturę korporacyjną i jakie jest uzasadnienie jej rozwijania?",
+    "correct_answers": [
+      "Ogół unikalnych właściwości danej korporacji, które stanowią o jej szczególnej zdolności do realizacji misji lub celu.",
+      "Rozwinięcie koncepcji zarządzania procesowego rozciągające się na przepływy informacji, sterowanie, wykorzystywane aplikacje i sprzęt.",
+      "Uporządkowanie procesów biznesowych i infrastruktury IT według logiki realizującej wymogi integracji i standaryzacji z modelu operacyjnego.",
+      "Uzasadnieniem jej rozwijania jest długoterminowe planowanie strategiczne oraz pełne wykorzystanie potencjału infrastruktury IT."
+    ],
+    "incorrect_answers": [
+      "Działalność skupiona wyłącznie na fizycznym projektowaniu budynków i przestrzeni biurowych dla pracowników.",
+      "Podejście eliminujące potrzebę integracji systemów informatycznych z celami biznesowymi firmy."
+    ]
+  },
+  {
+    "question": "Jakie są główne cele współczesnych przedsiębiorstw?",
+    "correct_answers": [
+      "Wzrost szybkości działania.",
+      "Podniesienie niezawodności działania.",
+      "Optymalizacja kosztów."
+    ],
+    "incorrect_answers": [
+      "Maksymalizacja skomplikowania struktur organizacyjnych.",
+      "Spowolnienie procesów decyzyjnych w celu unikania odpowiedzialności."
+    ]
+  },
+  {
+    "question": "Jakie były główne powody wprowadzenia RODO oraz na czym skupia się to rozporządzenie?",
+    "correct_answers": [
+      "Obecne rozporządzenie skupia się na problemie jawności bezpieczeństwa zbioru danych, wymagając ujawniania naruszeń klientom i odpowiednim organom.",
+      "Ma na celu ukrócenie dotychczasowej praktyki ukrywania faktów naruszeń bezpieczeństwa przed opinią publiczną, co powodowało ignorowanie problemu."
+    ],
+    "incorrect_answers": [
+      "Dotychczasowe podejście oparte na uświadamianiu obywateli o samym fakcie zbierania danych uznano za w pełni wystarczające i bezbłędne.",
+      "Głównym celem było zwolnienie przedsiębiorców z jakiejkolwiek odpowiedzialności za wycieki danych osobowych."
+    ]
+  },
+  {
+    "question": "Jakie kluczowe zmiany i obowiązki nakłada RODO na przedsiębiorstwa?",
+    "correct_answers": [
+      "Konieczność uwzględnienia ochrony danych osobowych już w fazie projektowania rozwiązań IT.",
+      "Obowiązek prowadzenia rejestru czynności przetwarzania danych osobowych oraz przeprowadzania analizy skutków działań przedsiębiorcy.",
+      "Obowiązek zawiadamiania organu nadzoru o naruszeniu zasad ochrony danych osobowych.",
+      "Wprowadzenie prawa do bycia zapomnianym, ograniczenia profilowania, rozbudowanie obowiązku informacyjnego oraz powołanie Inspektora Ochrony Danych Osobowych (IOD)."
+    ],
+    "incorrect_answers": [
+      "Zniesienie konieczności dokumentowania i inwentaryzacji zbiorów danych osobowych.",
+      "Zezwolenie na swobodny i niekontrolowany transfer danych osobowych poza Unię Europejską bez żadnych restrykcji."
+    ]
+  },
+  {
+    "question": "Jakie są symptomy braku solidnego fundamentu działalności (operacyjno-informatycznego) w firmie?",
+    "correct_answers": [
+      "Niektóre procesy biznesowe polegają na wykonywaniu tych samych czynności, tylko w innym systemie.",
+      "Pracownicy poświęcają wiele czasu na przenoszenie i dostosowywanie danych z jednego systemu do drugiego.",
+      "Brakuje informacji potrzebnych do podejmowania kluczowych decyzji o produktach i klientach.",
+      "Nie wiadomo, czy technologie informatyczne wnoszą do działalności przedsiębiorstwa jakąś wartość."
+    ],
+    "incorrect_answers": [
+      "Płynna, automatyczna synchronizacja danych między wszystkimi departamentami w czasie rzeczywistym.",
+      "Pełna przejrzystość procesów i natychmiastowa dostępność raportów strategicznych dla zarządu."
+    ]
+  },
+  {
+    "question": "Z jakich elementów składa się budowanie fundamentu działalności firmy i czym one są?",
+    "correct_answers": [
+      "Doskonalenie trzech obszarów: Modelu operacyjnego, Architektury korporacyjnej oraz Modelu współpracy z IT.",
+      "Model operacyjny to główne wsparcie dla strategii biznesowej, przedstawiające ogólną wizję realizacji przyjętych strategii.",
+      "Model współpracy z IT wyznacza zakres i poziom koniecznej integracji oraz zapewnia spójność pomiędzy celami biznesowymi i informatycznymi."
+    ],
+    "incorrect_answers": [
+      "Skupienie się wyłącznie na redukcji etatów w działach technicznych bez analizy modeli procesowych.",
+      "Model współpracy z IT polega na całkowitej autonomii działu informatycznego i braku jego korelacji z celami biznesu."
+    ]
+  },
+  {
+    "question": "Jakie są poziomy dojrzałości architektury korporacyjnej oraz co obejmuje jej opracowywanie?",
+    "correct_answers": [
+      "Obejmuje identyfikowanie istniejących elementów, określanie pożądanych nowych elementów oraz ich przedstawianie w celu komunikowania.",
+      "Cztery poziomy dojrzałości to: Poziom silosów biznesowych, Poziom standaryzacji technologii, Poziom optymalizacji działalności podstawowej oraz Poziom modularności biznesu."
+    ],
+    "incorrect_answers": [
+      "Cztery poziomy to: Poziom ignorancji, Poziom reaktywny, Poziom projektowy i Poziom chaotyczny.",
+      "Opracowywanie architektury wyklucza analizę stanu istniejącego (As-Is) na rzecz natychmiastowego wdrażania systemów docelowych."
+    ]
+  },
+  {
+    "question": "Kim jest architekt korporacyjny i jaka jest jego rola?",
+    "correct_answers": [
+      "To osoba pracująca na styku biznesu i działu IT, pełniąca rolę moderatora dyskusji i rozjemcy sporów.",
+      "Zapewnia zgodność wizji, strategii i modelu operacyjnego z planami dotyczącymi rozwoju IT.",
+      "Jest wyrazicielem woli właściciela i pozostaje zewnętrzny w stosunku do bezpośredniego wykonawcy wizji."
+    ],
+    "incorrect_answers": [
+      "To programista odpowiedzialny wyłącznie za konfigurację sprzętu sieciowego i serwerów bazodanowych.",
+      "To zewnętrzny audytor finansowy, którego jedynym zadaniem jest sprawdzanie ksiąg rachunkowych korporacji."
+    ]
+  },
+  {
+    "question": "Jakie są kluczowe warunki stosowalności architektury korporacyjnej?",
+    "correct_answers": [
+      "Zrozumienie celu jej posiadania oraz wypływającej z tego wartości przez wszystkich interesariuszy.",
+      "Stabilna wizja oraz określona i jednolicie rozumiana strategia realizacji celu działania przedsiębiorstwa.",
+      "Należyta dojrzałość przedsiębiorstwa w zakresie zarządzania (np. odniesienie do CMM) oraz odpowiednia 'gotowość' do pracy nad architekturą."
+    ],
+    "incorrect_answers": [
+      "Ciągła i dynamiczna zmiana strategicznego celu firmy co kilka dni przez zarząd.",
+      "Całkowity brak dojrzałości zarządczej i brak zrozumienia roli IT przez kadrę kierowniczą."
+    ]
+  },
+  {
+    "question": "Jakie obszary i normy wchodzą w skład programu zarządzania bezpieczeństwem informacji (rodzina ISO 27000)?",
+    "correct_answers": [
+      "Obejmuje monitoring bezpieczeństwa, analizę i ewaluację ryzyka, odpowiedź na ryzyko, ciągłość biznesową oraz recovery (w cyklu PDCA).",
+      "ISO/IEC 27001 dotyczy systemów zarządzania bezpieczeństwem informacji (SZBI), a ISO/IEC 27005 dotyczy bezpośrednio zarządzania ryzykiem.",
+      "Składnikami SZBI są: Polityka SZBI, Procedury SZBI oraz Zabezpieczenia."
+    ],
+    "incorrect_answers": [
+      "ISO 27000 reguluje wyłącznie normy dotyczące emisji spalin i ochrony środowiska w zakładach przemysłowych.",
+      "Jedynym składnikiem SZBI jest zakup licencji na dedykowane oprogramowanie antywirusowe."
+    ]
+  },
+  {
+    "question": "Jakie są cechy nowego standardu zarządzania bezpieczeństwem informacji ISO/IEC 27001?",
+    "correct_answers": [
+      "Przygotowany według nowej struktury ogólnej (HLS), zgodnej z innymi nowymi standardami zarządzania, z dużym naciskiem na jakość zarządzania.",
+      "Działania prewencyjne zostały rozciągnięte na działania obsługi zarówno ryzyk, jak i szans.",
+      "Wprowadzono modyfikacje oceny ryzyka dla powszechnych zagrożeń, nowe techniki w sekcji Kryptografia oraz nacisk na relacje z dostawcami."
+    ],
+    "incorrect_answers": [
+      "Całkowite zrezygnowanie z monitorowania skuteczności na rzecz jednorazowej certyfikacji wstępnej.",
+      "Usunięcie wymagań związanych z kryptografią i uproszczenie struktury do formatu niespójnego z innymi normami ISO."
+    ]
+  },
+  {
+    "question": "Czym charakteryzuje się norma PN-ISO 31000 dotycząca zarządzania ryzykiem?",
+    "correct_answers": [
+      "Jest przeznaczona dla wszystkich organizacji bez względu na wielkość i branżę, określając ogólne wytyczne postępowania z ryzykiem.",
+      "Może być stosowana dla każdego typu ryzyka, bez względu na jego charakter oraz niezależnie od pozytywnych czy negatywnych konsekwencji.",
+      "Służy do harmonizowania procesów zarządzania ryzykiem w normach, nie jest przeznaczona do celów certyfikacji i nie promuje ujednoliconego zarządzania."
+    ],
+    "incorrect_answers": [
+      "Jest to norma obligatoryjna i certyfikowalna, służąca wyłącznie do kontroli ryzyk finansowych w bankowości.",
+      "Wymaga od każdej organizacji wdrożenia identycznego, sztywnego i ujednoliconego systemu zarządzania ryzykiem."
+    ]
+  },
+  {
+    "question": "Do czego służy norma PN-EN ISO 22301 (Bezpieczeństwo powszechne) i jakie przynosi korzyści?",
+    "correct_answers": [
+      "Pomaga zbudować odporność na ryzyka utraty zdolności funkcjonowania i pozwala reagować na sytuacje kryzysowe w sposób planowy.",
+      "Zastępuje standard BS 25999 (System Zarządzania Ciągłością Biznesu).",
+      "Zapewnia sprawdzoną metodę przywracania najważniejszych produktów i usług do ustalonego poziomu w określonym czasie oraz chroni reputację marki.",
+      "Zwiększa stabilność, elastyczność i zaufanie partnerów biznesowych do organizacji."
+    ],
+    "incorrect_answers": [
+      "Służy do technicznego testowania odporności materiałów budowlanych na ogień.",
+      "Przeznaczona jest wyłącznie dla mikroprzedsiębiorstw niezatrudniających pracowników."
+    ]
+  },
+  {
+    "question": "Jakie cechy posiadają normy i wytyczne wydawane przez NIST (National Institute of Standards and Technology)?",
+    "correct_answers": [
+      "Są powszechnie praktykowanymi wytycznymi w zakresie bezpieczeństwa, odzwierciedlającymi stan sztuki w cybersecurity.",
+      "Są powszechnie stosowane w przedsiębiorstwach na całym świecie, a geografia biznesu nie przeszkadza w ich praktykowaniu.",
+      "Są dokumentami publicznie dostępnymi."
+    ],
+    "incorrect_answers": [
+      "Są to dokumenty płatne i ściśle tajne, do użytku wyłącznie przez administrację rządową USA.",
+      "Stanowią przestarzałe zbiory przepisów, które całkowicie straciły przydatność we współczesnych systemach chmurowych."
+    ]
+  },
+  {
+    "question": "Które z poniższych stwierdzeń prawidłowo odnoszą się do architektury korporacyjnej w jej pełnym zakresie zastosowania ?",
+    "correct_answers": [
+      "Powinna przedstawiać wizję oczekiwanej docelowej architektury organizacji, na przykład na koniec planowanej transformacji.",
+      "Powinna obejmować stany pośrednie, na koniec określonych etapów transformacji nazywanych architekturami pośrednimi.",
+      "Powinna obejmować obecny sposób działania organizacji, co może określać stan odniesienia do dalszych prac nad architekturą.",
+      "Powinna uwzględniać wizję i przyszły model funkcjonowania organizacji."
+    ],
+    "incorrect_answers": [
+      "Powinna zostać zawieszona w sytuacji planowanej transformacji organizacji.",
+      "Nie powinna być praktykowana w organizacjach, które spodziewają się lub przechodzą okres silnego wzrostu.",
+      "Powinna być sukcesywnie zastępowana modelem transformacji cyfrowej.",
+      "Powinna zostać anulowana w sytuacji planowanego połączenia organizacji z inną organizacją, na przykład w związku z akwizycją (przejęciem)."
+    ]
+  },
+  {
+    "question": "Which of the following statements are true about organization, which has chosen an approach to risk management broadly described as “Apply common solutions to solve common problems” ?",
+    "correct_answers": [
+      "If organisation decides that its business objectives are not entirely covered by the risk assessment for a common solution, it is required to understand where the differences or gaps are.",
+      "Carry out tailored risk assessments for those business objectives that are not entirely covered by the common solution, and specify additional security controls, where appropriate."
+    ],
+    "incorrect_answers": [
+      "Transfer remaining risks without further analyses.",
+      "None. The selected common solutions reflect organization’s approach to risk. They are enough."
+    ]
+  },
+  {
+    "question": "Which of the following are legitimate behaviors or actions during risk assessment ?",
+    "correct_answers": [
+      "Use business language to IT staff, to explain and motivate the business risk impact on technology and information.",
+      "Conduct risk assessment and manage risks pertaining to the whole lifecycle of information, system or service.",
+      "Conduct risk assessment to inform information security risk management decisions.",
+      "Conduct risk assessment and manage risks during the design, implementation and improvement of business processes."
+    ],
+    "incorrect_answers": [
+      "Assume that those people, who are involved in risk program, will understand risks.",
+      "Conduct risk assessment to satisfy a project milestone.",
+      "Use security related vocabulary and jargon when describing risks to decision makers."
+    ]
+  },
+  {
+    "question": "Jakie oczekiwania zwykle wiąże się z wdrożeniem architektury korporacyjnej w organizacji ?",
+    "correct_answers": [
+      "Wprowadzi tzw. zwinność organizacyjną (agility).",
+      "Kierunki rozwoju IT będą spójne z celami organizacji.",
+      "Efektywnie wykorzysta posiadane zasoby IT.",
+      "Określi sposób integracji oraz standaryzacji."
+    ],
+    "incorrect_answers": [
+      "Przyniesie wiodącą pozycję osobom, które się zaangażują w jej opracowywanie i wdrażanie.",
+      "Nastąpi gruntowna transformacja przedsiębiorstwa.",
+      "Ułatwi przeprowadzenie trudnej transformacji bez potrzeby prowadzenia szeroko w organizacji długotrwałych konsultacji na temat głównych (\"kierunkowych\") zmian"
+    ]
+  },
+  {
+    "question": "Which of the following is not a requirement for the correct start (initiation) of risk management programme in organization ?",
+    "correct_answers": [
+      "The organization has reached Capability Maturity Management level: Managed/Capable in risk management.",
+      "Business-IT alignment is mature.",
+      "Enterprise architecture is the default governance and management model in organization."
+    ],
+    "incorrect_answers": [
+      "Senior leadership participation and commitment.",
+      "Stakeholder participation and commitment.",
+      "Risk management is made an organization-wide concern.",
+      "Business impact analysis is integral part of the risk programme."
+    ]
+  },
+  {
+    "question": "What options are available to manage risk, which has been identified in organization ?",
+    "correct_answers": [
+      "Accept risk.",
+      "Treat risk.",
+      "Transfer risk.",
+      "Avoid risk."
+    ],
+    "incorrect_answers": [
+      "Wait to understand how it interacts with organisation.",
+      "Ignore risk.",
+      "Do nothing.",
+      "Delegate risk to IT department.",
+      "Transform risk into another, better manageable set."
+    ]
+  },
+  {
+    "question": "Które z niżej wymienionych zwykle należą do obowiązków architekta korporacyjnego, lecz nie należą do jego głównych obowiązków?",
+    "correct_answers": [
+      "Dobór narzędzi do opisu i wdrażania architektury korporacyjnej.",
+      "Identyfikacja procesów biznesowych.",
+      "Opis systemów IT/infrastruktury teleinformatycznej.",
+      "Nadzór nad rozwijaniem systemów informatycznych.",
+      "Prowadzenie wewnętrznych szkoleń z zakresu architektury korporacyjnej."
+    ],
+    "incorrect_answers": [
+      "Definiowanie sposobu rozwoju architektury korporacyjnej.",
+      "Definiowanie standardów IT.",
+      "Udział w tworzeniu strategii biznesowej/strategii IT organizacji.",
+      "Udział w tworzeniu strategii cyfrowej transformacji.",
+      "Definiowanie pryncypiów architektonicznych."
+    ]
+  },
+  {
+    "question": "Które spośród wymienionych należy zaliczyć do głównych barier w akceptacji, opracowaniu i wdrażaniu architektury korporacyjnej ?",
+    "correct_answers": [
+      "Nadmiernie rozbudowana dokumentacja.",
+      "Brak rozumienia problematyki architektury korporacyjnej u osób władnych podjąć inicjatywę w zakresie rozwijania architektury.",
+      "Brak szybko widocznych rezultatów.",
+      "Obawa przed ograniczeniem elastyczności organizacji.",
+      "Ograniczenia budżetowe.",
+      "Trudności ze wskazaniem scenariusza głównego (business case) dla architektury korporacyjnej w organizacji.",
+      "Niedoskonałość metod zarządzania architekturą.",
+      "Pracochłonność i czasochłonność opisania stanu ‘as-is’.",
+      "Zmiany zachodzą zbyt szybko, aby nadążać z aktualizacją architektury."
+    ],
+    "incorrect_answers": []
+  },
+  {
+    "question": "Which of the following is a synonym for the residual risk ?",
+    "correct_answers": [
+      "Remaining risk, after risk response has taken place.",
+      "One’s own share of risk, after risk sharing approach has been adopted and deployed."
+    ],
+    "incorrect_answers": [
+      "Risk-free.",
+      "100% secure.",
+      "An estimate of how much a specific risk treatment option reduces a risk from its original state or level.",
+      "Risk response."
+    ]
+  },
+  {
+    "question": "POZIOM DOJRZAŁOŚCI organizacji w zakresie rozwijania praktyki architektonicznej w zakresie architektury korporacyjnej, w którym: podstawowe działania w zakresie architektury korporacyjnej w organizacji są zdefiniowane na dużym poziomie ogólności, oraz zostały one opanowane od strony zarządczej, oraz wiedza z dotychczasowych doświadczeń jest podstawą do kształtowania planu i sposobu dalszych prac w zakresie architektury korporacyjnej, wykazuje cechy charakterystyczne dla poziomu dojrzałości:",
+    "correct_answers": [
+      "Powtarzalny (Repeated) – elementy praktyki architektonicznej są stosowane w sposób powtarzalny."
+    ],
+    "incorrect_answers": [
+      "Początkowy (initial) – brak zorganizowanych elementów praktyki architektonicznej.",
+      "Optymalizowany (Optimized) – praktyka architektoniczna jest usprawniana w sposób ciągły.",
+      "Zarządzany (Manged) – praktyka architektoniczna w pełni zarządzana.",
+      "Zdefiniowany (Defined) – praktyka architektoniczna jest dobrze określona i ustabilizowana."
+    ]
+  },
+  {
+    "question": "Jakie zmiany można zaobserwować podczas wdrażania architektury korporacyjnej w organizacji ?",
+    "correct_answers": [
+      "Kierunki rozwoju infrastruktury IT są uwzględniane podczas określania głównych kierunków rozwoju organizacji i wyznaczania dla niej celów do realizacji.",
+      "Klaruje się sposób integracji oraz standaryzacji.",
+      "Oprócz zarządzania, organizacja zostaje objęta także kierowaniem i nadzorem.",
+      "Następuje zmiana poziomu integracji oraz standaryzacji."
+    ],
+    "incorrect_answers": [
+      "Następuje rozbudowa potencjału biznesowego i operacyjnego przedsiębiorstwa.",
+      "Następują konsekwentne zmiany w każdym obszarze funkcjonowania i na wszystkich poziomach organizacji."
+    ]
+  },
+  {
+    "question": "Which of the following issues make Risk Management difficult in a system-of-systems ?",
+    "correct_answers": [
+      "Some risks that threaten the successful design and engineering process of a system-of-systems may become apparent, when it is late to effectively manage or mitigate them.",
+      "The challenge comes from implementing and managing the process across a complex system, whose subordinate systems may be geographically dispersed, organizationally distributed, and may not have fully coherent user expectations.",
+      "The challenge comes from implementing the risk management process in a system, which is autonomous by design.",
+      "The challenge comes from implementing the risk management process in a system, which has no baseline management structure."
+    ],
+    "incorrect_answers": [
+      "Assessments should be made of each risk's potential impacts to the supported and planned capabilities.",
+      "Assessments should be extended to include the study of whether they have collateral effects on capabilities or technologies."
+    ]
+  },
+  {
+    "question": "Which of the following are indicators of the correct approach to integrated risk management towards Enterprise Risk Management ?",
+    "correct_answers": [
+      "The risk management process is established and centrally co-ordinated in organization.",
+      "The risk management process is continuous.",
+      "Organization is prepared to identify and take advantage of opportunities emerging from risks.",
+      "The risk management activity is strategic, broadly focused.",
+      "The risk management process is guided by CRO.",
+      "The risk management process is driven by considering associated value for organization.",
+      "Risks are managed across business units in an integrated way."
+    ],
+    "incorrect_answers": [
+      "The risk management practice is established and led by Chief Enterprise Architect.",
+      "The risk management is controlled by CFO.",
+      "The risk management practice is concentrated on business-IT alignment."
+    ]
+  },
+  {
+    "question": "W modelu Carnegie Mellon Capability Maturity Model (CMM), zdolność oceniania jakości i stabilności procesu zarządzania jest cechą charakterystyczną poziomu dojrzałości:",
+    "correct_answers": [
+      "CMM – poziom 4. Zarządzany (Managed)."
+    ],
+    "incorrect_answers": [
+      "CMM – poziom 1. Wstępny (Initial).",
+      "CMM – poziom 2. Powtarzalność (Repeatable).",
+      "CMM – poziom 3. Doskonalenie zarządzania (Defined).",
+      "CMM – poziom 5. Optymalizowany (Optimized)."
+    ]
+  },
+  {
+    "question": "Which of the following is TRUE about enterprise risk and enterprise risk management ?",
+    "correct_answers": [
+      "Enterprise risk can result from any type of activity.",
+      "Enterprise risk management includes organizational assets, such as: physical assets, financial assets and immaterial assets.",
+      "Enterprise risk depends on the knowledge, understanding, skill and biases of the individuals assessing the risk.",
+      "Enterprise risk often depends on the business and operations context of the organisation, which faces the risk."
+    ],
+    "incorrect_answers": [
+      "Enterprise risk management includes the \"Future state\" vision of enterprise risk",
+      "Enterprise risk management is an activity focusing on technology and information risk.",
+      "Enterprise risks that emerge from uncertainty are unmanageable."
+    ]
+  },
+  {
+    "question": "Jaka jest pierwsza wiadomość wysyłana w procesie nawiązywania połączenia (handshake) w protokole TLS?",
+    "correct_answers": [
+      "ClientHello"
+    ],
+    "incorrect_answers": [
+      "ServerHello",
+      "CertificateRequest",
+      "ClientKeyExchange",
+      "SYN"
+    ]
+  },
+  {
+    "question": "Z jakich elementów generowany jest 'master secret' (master key) w protokole TLS?",
+    "correct_answers": [
+      "Z wykorzystaniem wartości 'pre-master secret'",
+      "Z użyciem wartości losowych (nonce) klienta (ClientHello.random)",
+      "Z użyciem wartości losowych (nonce) serwera (ServerHello.random)"
+    ],
+    "incorrect_answers": [
+      "Wyłącznie z klucza publicznego serwera",
+      "Z użyciem adresu IP oraz numerów portów klienta i serwera",
+      "Jest on bezpośrednio szyfrowany kluczem prywatnym serwera"
+    ]
+  },
+  {
+    "question": "Gdzie i w jaki sposób obliczany jest 'master secret' w protokole TLS?",
+    "correct_answers": [
+      "Obliczany jest niezależnie na kliencie (on Client)",
+      "Obliczany jest niezależnie na serwerze (on Server)",
+      "Z użyciem nonce'ów (wartości losowych wymienionych wcześniej przez strony)"
+    ],
+    "incorrect_answers": [
+      "Wyłącznie na serwerze, a następnie przesyłany do klienta",
+      "Obliczany przez zewnętrzny zaufany serwer autoryzacji"
+    ]
+  },
+  {
+    "question": "Kto ostatecznie wybiera 'cipher suite' (zestaw algorytmów kryptograficznych) podczas negocjacji w protokole TLS?",
+    "correct_answers": [
+      "Serwer (wybiera z listy zaproponowanej wcześniej przez klienta)"
+    ],
+    "incorrect_answers": [
+      "Klient (narzuca serwerowi użycie konkretnego zestawu)",
+      "Urząd Certyfikacji (CA)",
+      "Wybór następuje w drodze głosowania obu stron"
+    ]
+  },
+  {
+    "question": "Co wchodzi w skład tzw. 'Security Triad' (trzech fundamentów bezpieczeństwa informacji - CIA)?",
+    "correct_answers": [
+      "Confidentiality (Poufność)",
+      "Integrity (Integralność)",
+      "Availability (Dostępność)"
+    ],
+    "incorrect_answers": [
+      "Authentication (Uwierzytelnienie)",
+      "Authorization (Autoryzacja)",
+      "Accountability (Rozliczalność)",
+      "Non-repudiation (Niezaprzeczalność)"
+    ]
+  },
+  {
+    "question": "Które z poniższych stwierdzeń prawidłowo opisują podstawowy algorytm wymiany kluczy Diffie-Hellman (Basic Diffie-Hellman)?",
+    "correct_answers": [
+      "Składa się z wymiany 2 wiadomości pomiędzy stronami",
+      "Pozwala na bezpieczne ustalenie wspólnego sekretu przez niezabezpieczony kanał komunikacyjny"
+    ],
+    "incorrect_answers": [
+      "Składa się z wymiany 3 wiadomości",
+      "Zapewnia domyślnie silne uwierzytelnianie stron",
+      "Jest w pełni odporny na ataki typu Man-in-the-Middle bez stosowania dodatkowych mechanizmów"
+    ]
+  },
+  {
+    "question": "Do czego służy protokół ISAKMP (Internet Security Association and Key Management Protocol)?",
+    "correct_answers": [
+      "Do negocjowania, ustanawiania, modyfikacji i usuwania asocjacji bezpieczeństwa (Security Associations - SA)",
+      "Zapewnia ramy i formaty komunikatów dla wymiany kluczy kryptograficznych"
+    ],
+    "incorrect_answers": [
+      "Służy do szyfrowania danych w warstwie aplikacji (np. stron WWW)",
+      "Służy do automatycznego przydzielania adresów IP w sieciach lokalnych",
+      "Jest to algorytm szyfrowania asymetrycznego"
+    ]
+  },
+  {
+    "question": "Wybierz poprawne stwierdzenia dotyczące definicji Key Management (Zarządzania kluczami) oraz Key Agreement (Uzgodnienia klucza):",
+    "correct_answers": [
+      "Key Management to szeroki cykl życia klucza, obejmujący procesy takie jak generation, exchange, storage, use oraz replacement (wymiana).",
+      "Key Agreement to proces, w którym dwie lub więcej stron wspólnie ustala wartość klucza, tak że żadna z nich nie może samodzielnie zdeterminować ostatecznej wartości."
+    ],
+    "incorrect_answers": [
+      "Key Management ogranicza się wyłącznie do procesu niszczenia starych kluczy.",
+      "W procesie Key Agreement jedna strona samodzielnie generuje klucz i po prostu wysyła go drugiej."
+    ]
+  },
+  {
+    "question": "Jaki fundamentalny problem rozwiązuje Infrastruktura Klucza Publicznego (PKI - Public Key Infrastructure)?",
+    "correct_answers": [
+      "Problem bezpiecznej dystrybucji kluczy publicznych w sposób skalowalny",
+      "Wiązanie tożsamości (np. osoby, domeny, urządzenia) z jej kluczem publicznym za pomocą cyfrowych certyfikatów",
+      "Dostarcza mechanizm zaufania (Trust) pozwalający zweryfikować autentyczność klucza bez wcześniejszego bezpiecznego kanału z danym podmiotem"
+    ],
+    "incorrect_answers": [
+      "Zastępuje konieczność stosowania szyfrowania symetrycznego, znacząco przyspieszając transfer danych",
+      "Rozwiązuje problem utraty kluczy prywatnych przez użytkowników poprzez trzymanie ich kopii zapasowych w publicznym rejestrze"
+    ]
+  },
+  {
+    "question": "Które z poniższych stwierdzeń są prawdziwe w kontekście cech 'Zaufania' (Trust) w modelach bezpieczeństwa?",
+    "correct_answers": [
+      "Zaufanie z reguły jest kierunkowe (ktoś ufa komuś), a nie domyślnie symetryczne.",
+      "Zaufanie nie zawsze jest w pełni przechodnie (addytywne) – to, że A ufa B, a B ufa C, nie musi automatycznie oznaczać, że A ufa C w tym samym stopniu."
+    ],
+    "incorrect_answers": [
+      "Trust is always symmetric (Zaufanie jest zawsze symetryczne).",
+      "Trust is strictly additive (Zaufanie jest zawsze i w każdym przypadku addytywne/przechodnie)."
+    ]
+  },
+  {
+    "question": "Które z wymienionych specjalności są w najmniejszym stopniu angażowane na kluczowych stanowiskach w związku z opracowywaniem i wdrażaniem architektury korporacyjnej ?",
+    "correct_answers": [
+      "Inżynier IT.",
+      "Dyrektor finansowy.",
+      "Główny analityk ryzyka."
+    ],
+    "incorrect_answers": [
+      "Dyrektor ds. Informatyki.",
+      "Architekt rozwiązań IT.",
+      "Kierownik projektów.",
+      "Analityk biznesowy.",
+      "Kierownik działu IT.",
+      "Architekt systemów IT.",
+      "Menedżer programów i portfeli projektów.",
+      "Analityk systemowy."
+    ]
+  },
+  {
+    "question": "Jakie oczekiwania zwykle wiąże się z przygotowaniem architektury korporacyjnej w organizacji ?",
+    "correct_answers": [
+      "Określi sposób integracji oraz standaryzacji.",
+      "Kierunki rozwoju IT będą spójne z celami organizacji.",
+      "Efektywnie wykorzysta posiadane zasoby IT.",
+      "Wprowadzi tzw. zwinność organizacyjną (agility)."
+    ],
+    "incorrect_answers": [
+      "Przyniesie wiodącą pozycję osobom, które się zaangażują w jej opracowanie.",
+      "Nastąpi gruntowna transformacja przedsiębiorstwa."
+    ]
+  },
+  {
+    "question": "Opracowany i przyjęty w organizacji model oceny dojrzałości architektury korporacyjnej może mieć różne przeznaczenie. Do najważniejszych funkcji modelu zalicza się:",
+    "correct_answers": [
+      "Funkcję deskryptywną.",
+      "Funkcję preskryptywną.",
+      "Funkcję ewaluacyjną."
+    ],
+    "incorrect_answers": [
+      "Funkcję terminalną.",
+      "Funkcję sprawozdawczą i kontrolną.",
+      "Funkcję definiującą zakres przejścia."
+    ]
+  },
+  {
+    "question": "Which of the following is TRUE about enterprise risk ?",
+    "correct_answers": [
+      "Risk can result from any type of activity.",
+      "Risk often depends on the business and operations context of the organisation, which faces the risk.",
+      "Risk depends on the knowledge, understanding, skill and biases of the individuals assessing the risk."
+    ],
+    "incorrect_answers": [
+      "Risks that emerge from uncertainty are unmanageable.",
+      "Risk management is an activity focusing on technology and information risk."
+    ]
+  },
+  {
+    "question": "Which of the following issues make risk management challenging in a system-of-systems ?",
+    "correct_answers": [
+      "Risks that threaten the successful engineering of a system-of-systems may become evident only when it is too late to effectively manage or mitigate them.",
+      "The challenge comes from implementing the risk management process in a system, which has no baseline management structure.",
+      "The challenge comes from implementing and managing the process steps across a large-scale and complex system, whose subordinate systems, may be geographically dispersed, organizationally distributed, and may not have fully coherent user needs.",
+      "The challenge comes from implementing the risk management process in a system, which is autonomous by design."
+    ],
+    "incorrect_answers": [
+      "Assessments should be made of each risk's potential impacts to planned capabilities.",
+      "Assessments should be extended to include, whether they have collateral effects on dependent capabilities or technologies."
+    ]
+  },
+  {
+    "question": "Jakie oczekiwania zwykle wiąże się z przygotowaniem architektury korporacyjnej w organizacji ?",
+    "correct_answers": [
+      "Określi sposób integracji oraz standaryzacji.",
+      "Określi wymagany poziom integracji oraz standaryzacji."
+    ],
+    "incorrect_answers": [
+      "Oprócz zarządzania, organizacja zostanie objęta także kierowaniem i nadzorem.",
+      "Nastąpią konsekwentne zmiany w każdym obszarze funkcjonowania i na wszystkich poziomach organizacji.",
+      "Przyczyni się do rozbudowy potencjału przedsiębiorstwa.",
+      "Kierunki rozwoju IT staną się celami organizacji."
+    ]
+  },
+  {
+    "question": "Które spośród wymienionych należy zaliczyć do głównych barier we wdrażaniu architektury korporacyjnej ?",
+    "correct_answers": [
+      "Ograniczenia budżetowe.",
+      "Zmiany zachodzą zbyt szybko, aby nadążać z aktualizacją istniejącej dokumentacji.",
+      "Obawa przed ograniczeniem elastyczności organizacji.",
+      "Brak szybko widocznych rezultatów.",
+      "Brak świadomości u osób władnych podjąć inicjatywę rozwijania architektury.",
+      "Pracochłonność i czasochłonność opisania stanu ‘as-is’.",
+      "Niedoskonałość istniejących metod zarządzania architekturą.",
+      "Problemy ze wskazaniem scenariusza głównego (business case) dla architektury korporacyjnej."
+    ],
+    "incorrect_answers": []
+  }
+]
