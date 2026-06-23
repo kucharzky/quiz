@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Quiz BSK – 105 pytań z bezpieczeństwa informacji">
-  <title>Quiz BSK</title>
+  <meta name="description" content="Quiz – BSK i ZiEP">
+  <title>Quiz</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="container">
     <div id="screen-start" class="card hidden">
       <h1>Witaj w Teście!</h1>
-      <p class="subtitle" id="pool-subtitle">Ładowanie puli pytań…</p>
-      <div class="warning">
-        Uwaga: Niektóre pytania mają więcej niż jedną poprawną odpowiedź.<br>
-        Musisz zaznaczyć wszystkie poprawne opcje!
+
+      <div class="category-bar">
+        <label class="field-label" for="category-select">Kategoria pytań</label>
+        <select id="category-select" class="field-select"></select>
       </div>
+
+      <p class="subtitle" id="pool-subtitle">Ładowanie puli pytań…</p>
+      <div class="warning hidden" id="multi-answer-warning"></div>
 
       <div class="challenge-bar">
         <label class="challenge-toggle" for="challenge-mode">
@@ -146,6 +149,7 @@
         <div class="header-bar">
           <span id="round-label">Runda 1</span>
           <span id="save-badge" class="save-badge hidden"></span>
+          <span id="category-badge" class="category-badge hidden"></span>
           <span id="exam-badge" class="exam-badge hidden">Egzamin</span>
           <span id="challenge-timer" class="challenge-timer hidden">
             <span class="timer-icon" aria-hidden="true">⏱</span>
@@ -156,6 +160,7 @@
         <div class="question-text" id="question-text"></div>
         <div id="options"></div>
         <div class="feedback" id="feedback"></div>
+        <div class="explanation hidden" id="explanation"></div>
         <button class="btn btn-check" id="action-btn">Sprawdź odpowiedź</button>
       </div>
     </div>

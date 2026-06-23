@@ -1,0 +1,362 @@
+[
+  {
+    "id": 1,
+    "question": "W którym z typów organizacji Kierownik Projektu ma najmniejszą władzę?",
+    "correct_answers": [
+      "Funkcyjna"
+    ],
+    "incorrect_answers": [
+      "Słaba macierzowa",
+      "Silna macierzowa",
+      "Zrównoważona macierzowa"
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Czy organizacja funkcyjna może realizować projekty?",
+    "correct_answers": [
+      "Tak, ale należy się spodziewać problemów z podziałem władzy między kierowników funkcyjnych a kierownika projektu"
+    ],
+    "incorrect_answers": [
+      "Tak, ale nie powinna",
+      "Tak, ale organizacja musi zmienić strukturę w macierzową lub projektową",
+      "Nie"
+    ]
+  },
+  {
+    "id": 3,
+    "question": "Jakość produktu projektu...",
+    "correct_answers": [
+      "... powinna być optymalizowana by minimalizować koszt zgodności i niezgodności"
+    ],
+    "incorrect_answers": [
+      "... może być zignorowana aż do fazy zamykania projektu",
+      "... jest odpowiedzialnością Kierownika Jakości, a nie Kierownika Projektu",
+      "... powinna być jak najwyższa"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Zadania na ścieżce krytycznej",
+    "correct_answers": [
+      "Mają zawsze zapas całkowity wynoszący 0"
+    ],
+    "incorrect_answers": [
+      "Mogą być opóźnione bez opóźniania projektu",
+      "Są krytyczne dla zakresu projektu",
+      "Mają najwyższy koszt w projekcie"
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Metoda EVM ...",
+    "correct_answers": [
+      "jest metodą kontroli projektu"
+    ],
+    "incorrect_answers": [
+      "sprowadza całość projektu do czasu",
+      "jest metodą planowania projektu",
+      "sprowadza całość projektu do zakresu"
+    ]
+  },
+  {
+    "id": 6,
+    "question": "Koszty pośrednie w projekcie ...",
+    "correct_answers": [
+      "... są powodowane przez projekt, ale nie mogą być mu bezpośrednio przypisane"
+    ],
+    "incorrect_answers": [
+      "... zazwyczaj wynoszą 25% wartości projektu",
+      "... nie są uwzględniane w budżecie projektu",
+      "... zazwyczaj wynoszą 30% wartości projektu"
+    ]
+  },
+  {
+    "id": 7,
+    "question": "W metodzie PERT przyjęto następujący sposób określania czasu trwania zadań",
+    "correct_answers": [
+      "Jest to średnia ważona z wagą 4 dla czasu najbardziej prawdopodobnego"
+    ],
+    "incorrect_answers": [
+      "Jest to zawsze czas pesymistyczny",
+      "Jest to zawsze czas optymistyczny",
+      "Jest to średnia arytmetyczna czasu pesymistycznego i optymistycznego"
+    ]
+  },
+  {
+    "id": 8,
+    "question": "Metoda EVM NIE jest ...",
+    "correct_answers": [
+      "Narzędziem bezpośredniej kontroli pracowników"
+    ],
+    "incorrect_answers": [
+      "Narzędziem oceny wydajności pracy w projekcie",
+      "Narzędziem prognozowania przyszłości projektu",
+      "Narzędziem identyfikacji problemów"
+    ]
+  },
+  {
+    "id": 9,
+    "question": "Macierz zaangażowania interesariuszy pozwala na...",
+    "correct_answers": [
+      "wszystkie odpowiedzi są prawidłowe"
+    ],
+    "incorrect_answers": [
+      "... podział interesariuszy na istotnych i nieistotnych",
+      "... poszeregowanie interesariuszy od najistotniejszych",
+      "... dopracowanie strategii postępowania z interesariuszem"
+    ]
+  },
+  {
+    "id": 10,
+    "question": "Wybierz zdanie prawdziwe",
+    "correct_answers": [
+      "Budżet i harmonogram zależą od zakresu"
+    ],
+    "incorrect_answers": [
+      "Zmiana zakresu nie niesie konieczności rewizji budżetu",
+      "Zmiana zakresu nie niesie konieczności rewizji harmonogramu",
+      "Wszystkie stwierdzenia są prawdziwe"
+    ]
+  },
+  {
+    "id": 11,
+    "question": "Struktura podziału pracy...",
+    "correct_answers": [
+      "... musi zawierać dokładnie wszystkie zadania"
+    ],
+    "incorrect_answers": [
+      "... musi zawierać logiczną kolejność zadań",
+      "... nie jest niezbędna do planowania projektu",
+      "... musi mieć co najmniej 3 poziomy"
+    ]
+  },
+  {
+    "id": 12,
+    "question": "Metodę EVM stosuje się",
+    "correct_answers": [
+      "W zależności od istotności i niepewności projektu"
+    ],
+    "incorrect_answers": [
+      "Co kwartał",
+      "Przy każdym kamieniu milowym",
+      "Co miesiąc"
+    ]
+  },
+  {
+    "id": 13,
+    "question": "Diagramy Ishikawa",
+    "correct_answers": [
+      "To diagramy pozwalające na rozbicie skutku na listę możliwych przyczyn"
+    ],
+    "incorrect_answers": [
+      "To wykresy pokazujące najbardziej prawdopodobną przyczynę",
+      "To wykresy pokazujące zależność dwóch wartości",
+      "To wykresy prezentujące tolerancje w projekcie"
+    ]
+  },
+  {
+    "id": 14,
+    "question": "Największa pewność zatrudnienia osób realizujących projekt (po zakończeniu projektu) występuje w ...",
+    "correct_answers": [
+      "organizacji funkcyjnej"
+    ],
+    "incorrect_answers": [
+      "organizacji projektowej",
+      "organizacji macierzowej słabej",
+      "organizacji macierzowej silnej"
+    ]
+  },
+  {
+    "id": 15,
+    "question": "Głównym celem Statement of Work jest ...",
+    "correct_answers": [
+      "Ułatwienie planowania kosztorysu"
+    ],
+    "incorrect_answers": [
+      "Ułatwienie zrozumienia celu projektu",
+      "Promocja celu projektu",
+      "Ułatwienie stworzenia karty projektu"
+    ]
+  },
+  {
+    "id": 16,
+    "question": "W skład kultury organizacji nie zalicza się ...",
+    "correct_answers": [
+      "przepisów BHP"
+    ],
+    "incorrect_answers": [
+      "zwyczajów załogi",
+      "systemu motywacyjnego",
+      "sposobu wynagradzania"
+    ]
+  },
+  {
+    "id": 17,
+    "question": "Design Thinking",
+    "correct_answers": [
+      "To metoda znajdowania kreatywnych rozwiązań z udziałem użytkowników"
+    ],
+    "incorrect_answers": [
+      "To alternatywna wobec burzy mózgów metoda rozwiązywania wszelkich problemów projektowych",
+      "To metoda rozwijania kreatywnego myślenia",
+      "To metoda znajdowania kreatywnych rozwiązań bez udziału użytkowników"
+    ]
+  },
+  {
+    "id": 18,
+    "question": "Do wewnętrznych interesariuszy projektu należą",
+    "correct_answers": [
+      "Zarząd firmy realizującej projekt"
+    ],
+    "incorrect_answers": [
+      "Klient projektu",
+      "Dostawcy materiałów na rzecz projektu",
+      "NGO (organizacje pozarządowe)"
+    ]
+  },
+  {
+    "id": 19,
+    "question": "Elementem karty projektu nie jest...",
+    "correct_answers": [
+      "Szczegółowa analiza ryzyka"
+    ],
+    "incorrect_answers": [
+      "Uzasadnienie projektu",
+      "Ramowy budżet",
+      "Cel projektu"
+    ]
+  },
+  {
+    "id": 20,
+    "question": "Kamień milowy w projekcie ...",
+    "correct_answers": [
+      "... może służyć do oceny jego postępów"
+    ],
+    "incorrect_answers": [
+      "... jest zadaniem angażującym zasoby lecz nie angażującym czasu",
+      "... jest zadaniem angażującym czas lecz nie angażującym zasobów",
+      "... jest zadaniem angażującym zasoby i czas"
+    ]
+  },
+  {
+    "id": 21,
+    "question": "Projekt od procesu odróżnia...",
+    "correct_answers": [
+      "Projekt jest ograniczony w czasie a proces nie"
+    ],
+    "incorrect_answers": [
+      "Proces jest ograniczony w czasie a projekt nie",
+      "Projekty nie mają fazy zamykania, w przeciwieństwie do procesów",
+      "Procesy nie wymagają zarządzania"
+    ]
+  },
+  {
+    "id": 22,
+    "question": "Analiza ilościowa ryzyka",
+    "correct_answers": [
+      "Polega na określeniu liczbowego prawdopodobieństwa i wartości ryzyka wyrażonej w złotówkach"
+    ],
+    "incorrect_answers": [
+      "Polega na określeniu liczbowego prawdopodobieństwa i wpływu ryzyka w skali wysokie-średnie-niskie",
+      "Polega na określeniu prawdopodobieństwa w skali wysokie-średnie-niskie i wartości ryzyka wyrażonej w złotówkach",
+      "Polega na określeniu prawdopodobieństwa w skali wysokie-średnie-niskie i wpływu ryzyka w skali wysokie-średnie-niskie"
+    ]
+  },
+  {
+    "id": 23,
+    "question": "Drugim, poza siatką wpływ-zainteresowanie narzędziem planowania dla interesariuszy jest:",
+    "correct_answers": [
+      "Macierz zaangażowania"
+    ],
+    "incorrect_answers": [
+      "Macierz śledzenia wymagań",
+      "Struktura podziału pracy",
+      "WBS"
+    ]
+  },
+  {
+    "id": 24,
+    "question": "Cost Performance Index powyżej wartości 1 oznacza",
+    "correct_answers": [
+      "że możemy prognozować, że ukończymy projekt poniżej zakładanego budżetu - o ile prace będą realizowane z nie mniejszą niż dotychczas wydajnością"
+    ],
+    "incorrect_answers": [
+      "że projekt zakończy się z opóźnieniem",
+      "że możemy prognozować, że ukończymy projekt szybciej, niż zaplanowaliśmy - o ile prace będą realizowane z nie mniejszą niż dotychczas wydajnością",
+      "że możemy prognozować, że ukończymy projekt powyżej zakładanego budżetu - nie efektywnie wydajemy pieniądze"
+    ]
+  },
+  {
+    "id": 25,
+    "question": "Wartość planowana (Planned Value) to",
+    "correct_answers": [
+      "Informacja o zaplanowanym koszcie prac na dany moment czasu"
+    ],
+    "incorrect_answers": [
+      "Informacja o zaplanowanym wydatku na dany moment prac",
+      "Informacja o zaplanowanej wartości prac na dany moment czasu",
+      "Żadna z odpowiedzi nie jest poprawna"
+    ]
+  },
+  {
+    "id": 26,
+    "question": "Actual Cost (AC) to",
+    "correct_answers": [
+      "Rzeczywiście poniesiony koszt zrealizowanych prac"
+    ],
+    "incorrect_answers": [
+      "Wszystkie odpowiedzi są błędne",
+      "Rzeczywiście poniesiony koszt zaplanowanych prac",
+      "Zaplanowany koszt zaplanowanych prac"
+    ]
+  },
+  {
+    "id": 27,
+    "question": "Akceptacja ryzyka i zignorowanie planowania na wypadek jego wystąpienia",
+    "correct_answers": [
+      "Jest dobrą strategią, o ile wpływ i prawdopodobieństwo są jednocześnie znikomo małe"
+    ],
+    "incorrect_answers": [
+      "Akceptacja ryzyka nigdy nie jest dobrą strategią",
+      "Brak planowania nigdy nie jest dobrą strategią",
+      "Jest dobrą strategią, o ile wpływ lub prawdopodobieństwo są znikomo małe"
+    ]
+  },
+  {
+    "id": 28,
+    "question": "Opóźnienie między zadaniami w diagramie sieciowym",
+    "correct_answers": [
+      "Wynika z konieczności odczekania czasu między zadaniami, bez zaangażowania innych zasobów"
+    ],
+    "incorrect_answers": [
+      "Może być ujemne",
+      "Wynika z konieczności odczekania czasu między zadaniami, przy zaangażowaniu innych zasobów",
+      "Może zostać zignorowane przy planowaniu harmonogramu"
+    ]
+  },
+  {
+    "id": 29,
+    "question": "Wskaż zdanie fałszywe",
+    "correct_answers": [
+      "Stosowanie etykiet jest obligatoryjne"
+    ],
+    "incorrect_answers": [
+      "WBS nie może zawierać nakładających się zadań",
+      "Tworzenie WBS jest częścią zarządzania zakresem",
+      "WBS ma strukturę grafu skierowanego"
+    ]
+  },
+  {
+    "id": 30,
+    "question": "Wybierz zdanie prawdziwe",
+    "correct_answers": [
+      "Portfolio może obejmować zarówno projekty jak i programy"
+    ],
+    "incorrect_answers": [
+      "Portfolio, jako mniejsze od projektów, nie wymagają zarządzania",
+      "Programy, jako mniejsze od projektów, nie wymagają zarządzania",
+      "Portfolio może obejmować tylko programy - nie może obejmować niezgrupowanych w programy pojedynczych projektów"
+    ]
+  }
+]

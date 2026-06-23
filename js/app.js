@@ -1,8 +1,11 @@
-const STORAGE_KEY = "quiz_saves";
+const CATEGORY_PREF_KEY = "quiz_category";
 const CHALLENGE_PREF_KEY = "quiz_challenge_enabled";
 const CHALLENGE_SECONDS = 90;
 
 const state = {
+  categories: [],
+  categoryId: null,
+  explanations: {},
   allQuestions: [],
   questions: [],
   wrong: [],
@@ -19,6 +22,14 @@ const state = {
   examAnswers: [],
   examReviewFilter: "all",
 };
+
+function getStorageKey() {
+  return `quiz_saves_${state.categoryId || "default"}`;
+}
+
+function getCurrentCategory() {
+  return state.categories.find((c) => c.id === state.categoryId) || null;
+}
 
 let timerInterval = null;
 let timerRemaining = CHALLENGE_SECONDS;
@@ -45,11 +56,38 @@ function pickQuestions(count) {
 
 function updatePoolLabels() {
   const pool = getPoolSize();
+  const cat = getCurrentCategory();
+  const catLabel = cat ? cat.shortName : "";
   document.getElementById("pool-subtitle").innerHTML =
-    `Wybierz tryb i liczbę pytań — dostępna pula: <strong>${pool}</strong>.`;
+    `Wybierz tryb i liczbę pytań — dostępna pula <strong>${catLabel}</strong>: <strong>${pool}</strong>.`;
   document.getElementById("quick-pool-max").textContent = pool;
   document.getElementById("save-pool-max").textContent = pool;
   document.getElementById("exam-pool-max").textContent = pool;
+  updateMultiAnswerWarning();
+}
+
+function updateMultiAnswerWarning() {
+  const cat = getCurrentCategory();
+  const warning = document.getElementById("multi-answer-warning");
+  if (!cat?.multiAnswer) {
+    warning.classList.add("hidden");
+    return;
+  }
+  warning.classList.remove("hidden");
+  warning.innerHTML =
+    "Uwaga: Niektóre pytania mają więcej niż jedną poprawną odpowiedź.<br>" +
+    "Musisz zaznaczyć wszystkie poprawne opcje!";
+}
+
+function updateCategoryBadge() {
+  const badge = document.getElementById("category-badge");
+  const cat = getCurrentCategory();
+  if (cat) {
+    badge.textContent = cat.shortName;
+    badge.classList.remove("hidden");
+  } else {
+    badge.classList.add("hidden");
+  }
 }
 
 const screens = [
@@ -77,6 +115,44 @@ function shuffle(arr) {
 
 function sample(arr, n) {
   return shuffle(arr).slice(0, n);
+}
+
+function getQuestionExplanation(item) {
+  if (!item?.id || !state.explanations) return null;
+  return state.explanations[String(item.id)] || null;
+}
+
+function renderExplanationHtml(exp) {
+  if (!exp) return "";
+  const answerLine = exp.correct_text
+    ? `<div class="explanation-answer">Poprawna odpowiedź: ${escapeHtml(exp.correct_text)}</div>`
+    : "";
+  const body = exp.explanation
+    ? `<div class="explanation-body">${escapeHtml(exp.explanation)}</div>`
+    : "";
+  return `
+    <div class="explanation-title">Wyjaśnienie</div>
+    ${answerLine}
+    ${body}
+  `;
+}
+
+function showExplanation(item) {
+  const el = document.getElementById("explanation");
+  const exp = getQuestionExplanation(item);
+  if (!exp || state.examMode) {
+    el.classList.add("hidden");
+    el.innerHTML = "";
+    return;
+  }
+  el.innerHTML = renderExplanationHtml(exp);
+  el.classList.remove("hidden");
+}
+
+function hideExplanation() {
+  const el = document.getElementById("explanation");
+  el.classList.add("hidden");
+  el.innerHTML = "";
 }
 
 function escapeHtml(text) {
@@ -154,7 +230,7 @@ function initChallengeToggle() {
 
 function readSaves() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(getStorageKey());
     return raw ? JSON.parse(raw) : {};
   } catch {
     return {};
@@ -162,7 +238,7 @@ function readSaves() {
 }
 
 function writeSaves(saves) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(saves));
+  localStorage.setItem(getStorageKey(), JSON.stringify(saves));
 }
 
 function getSaveNames() {
@@ -179,6 +255,7 @@ function deleteSave(name) {
 function buildSavePayload(indexOverride) {
   return {
     name: state.saveName,
+    categoryId: state.categoryId,
     index: indexOverride !== undefined ? indexOverride : state.index,
     correctCount: state.correctCount,
     round: state.round,
@@ -196,6 +273,13 @@ function persistSave(indexOverride) {
 }
 
 function applySavePayload(data) {
+  if (data.categoryId) {
+    if (data.categoryId !== state.categoryId) {
+      throw new Error("Zapis należy do innej kategorii pytań.");
+    }
+  } else if (state.categoryId !== "bsk") {
+    throw new Error("Starszy zapis bez kategorii można wczytać tylko w BSK.");
+  }
   state.saveMode = true;
   state.saveName = data.name;
   state.index = data.index;
@@ -263,16 +347,63 @@ function refreshSaveList() {
 
 // —— Ładowanie pytań ——
 
-async function loadQuestions() {
-  const path = new URL("data/questions.json", window.location.href).href;
+async function loadCategories() {
+  const path = new URL("data/categories.json", window.location.href).href;
   const res = await fetch(path);
-  if (!res.ok) throw new Error("Nie udało się wczytać pytań");
+  if (!res.ok) throw new Error("Nie udało się wczytać kategorii");
   const data = await res.json();
+  if (!data.categories?.length) {
+    throw new Error("Brak kategorii w konfiguracji.");
+  }
+  state.categories = data.categories;
+}
+
+function populateCategorySelect() {
+  const select = document.getElementById("category-select");
+  select.innerHTML = "";
+  state.categories.forEach((cat) => {
+    const opt = document.createElement("option");
+    opt.value = cat.id;
+    opt.textContent = cat.name;
+    select.appendChild(opt);
+  });
+  const saved = localStorage.getItem(CATEGORY_PREF_KEY);
+  const valid = state.categories.some((c) => c.id === saved);
+  state.categoryId = valid ? saved : state.categories[0].id;
+  select.value = state.categoryId;
+}
+
+async function loadCategoryData(categoryId) {
+  const cat = state.categories.find((c) => c.id === categoryId);
+  if (!cat) throw new Error("Nieznana kategoria pytań.");
+
+  state.categoryId = categoryId;
+  state.explanations = {};
+
+  const questionsPath = new URL(`data/${cat.questionsFile}`, window.location.href).href;
+  const qRes = await fetch(questionsPath);
+  if (!qRes.ok) throw new Error(`Nie udało się wczytać pytań (${cat.shortName}).`);
+  const data = await qRes.json();
   if (!data.length) {
-    throw new Error("Brak pytań w bazie.");
+    throw new Error(`Brak pytań w kategorii ${cat.shortName}.`);
   }
   state.allQuestions = data;
+
+  if (cat.explanationsFile) {
+    const explanationsPath = new URL(`data/${cat.explanationsFile}`, window.location.href).href;
+    const eRes = await fetch(explanationsPath);
+    if (!eRes.ok) throw new Error(`Nie udało się wczytać wyjaśnień (${cat.shortName}).`);
+    state.explanations = await eRes.json();
+  }
+
   updatePoolLabels();
+  updateCategoryBadge();
+}
+
+async function onCategoryChange(categoryId) {
+  localStorage.setItem(CATEGORY_PREF_KEY, categoryId);
+  await loadCategoryData(categoryId);
+  refreshSaveList();
 }
 
 // —— Start gry ——
@@ -304,6 +435,7 @@ function beginQuiz() {
   show("screen-quiz");
   updateSaveBadge();
   updateExamBadge();
+  updateCategoryBadge();
   if (state.index >= state.questions.length) {
     if (state.examMode) {
       showExamResult();
@@ -383,7 +515,13 @@ function loadSaveQuiz() {
     return;
   }
 
-  applySavePayload(data);
+  try {
+    applySavePayload(data);
+  } catch (err) {
+    alert(err.message);
+    return;
+  }
+
   beginQuiz();
 }
 
@@ -395,6 +533,7 @@ function showQuestion() {
   feedback.textContent = "";
   feedback.className = "feedback";
   feedback.classList.toggle("hidden", state.examMode);
+  hideExplanation();
 
   const btn = document.getElementById("action-btn");
   const isLast = state.index === state.questions.length - 1;
@@ -486,6 +625,8 @@ function checkAnswer() {
   const btn = document.getElementById("action-btn");
   btn.textContent = "Następne pytanie";
   btn.className = "btn btn-next";
+
+  showExplanation(state.questions[state.index]);
 }
 
 function recordExamAnswer() {
@@ -493,6 +634,7 @@ function recordExamAnswer() {
   const isCorrect = evaluateAnswer(selected, state.currentOptions);
   state.examAnswers[state.index] = {
     question: state.questions[state.index].question,
+    questionId: state.questions[state.index].id,
     options: state.currentOptions.map((o) => ({ text: o.text, correct: o.correct })),
     selected,
     isCorrect,
@@ -611,7 +753,14 @@ function renderExamReviewDetail(questionIndex) {
     <span class="exam-status-tag ${statusClass}">${statusText}</span>
     <div class="question-text">${escapeHtml(answer.question)}</div>
     ${optionsHtml}
+    ${renderExplanationBlock(answer.questionId)}
   `;
+}
+
+function renderExplanationBlock(questionId) {
+  if (!questionId || !state.explanations[String(questionId)]) return "";
+  const exp = state.explanations[String(questionId)];
+  return `<div class="explanation">${renderExplanationHtml(exp)}</div>`;
 }
 
 function setExamReviewFilter(filter) {
@@ -676,6 +825,7 @@ function retryWrong() {
   persistSave();
   show("screen-quiz");
   updateSaveBadge();
+  updateCategoryBadge();
   showQuestion();
 }
 
@@ -703,9 +853,11 @@ function showStartScreen() {
   state.examAnswers = [];
   updateSaveBadge();
   updateExamBadge();
+  updateCategoryBadge();
   refreshSaveList();
   document.getElementById("save-name-input").value = "";
   document.getElementById("feedback").classList.remove("hidden");
+  hideExplanation();
   show("screen-start");
 }
 
@@ -750,14 +902,20 @@ document.getElementById("exam-count-input").addEventListener("keydown", (e) => {
   if (e.key === "Enter") startExamQuiz();
 });
 document.getElementById("action-btn").addEventListener("click", onAction);
+document.getElementById("category-select").addEventListener("change", (e) => {
+  onCategoryChange(e.target.value).catch((err) => alert(err.message));
+});
 
-loadQuestions()
-  .then(() => {
-    initChallengeToggle();
-    refreshSaveList();
-    showStartScreen();
-  })
-  .catch((err) => {
-    document.getElementById("screen-loading").innerHTML =
-      `<p class="loading" style="color:#c62828">Błąd: ${escapeHtml(err.message)}</p>`;
-  });
+async function initApp() {
+  await loadCategories();
+  populateCategorySelect();
+  await loadCategoryData(state.categoryId);
+  initChallengeToggle();
+  refreshSaveList();
+  showStartScreen();
+}
+
+initApp().catch((err) => {
+  document.getElementById("screen-loading").innerHTML =
+    `<p class="loading" style="color:#c62828">Błąd: ${escapeHtml(err.message)}</p>`;
+});

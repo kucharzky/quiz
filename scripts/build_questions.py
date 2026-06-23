@@ -1,4 +1,4 @@
-"""Regeneruje data/questions.json z pliku YAML (uruchom z katalogu github-pages)."""
+"""Regeneruje data/bsk_questions.json z pliku YAML (uruchom z katalogu github-pages)."""
 
 import json
 import sys
@@ -7,7 +7,7 @@ from pathlib import Path
 import yaml
 
 YAML_PATH = Path(__file__).resolve().parent.parent.parent / "app" / "questions.yaml"
-OUT_PATH = Path(__file__).resolve().parent.parent / "data" / "questions.json"
+OUT_PATH = Path(__file__).resolve().parent.parent / "data" / "bsk_questions.json"
 
 
 def main() -> None:

@@ -1,0 +1,152 @@
+{
+  "1": {
+    "correct": "b",
+    "correct_text": "Funkcyjna",
+    "explanation": "W organizacji funkcyjnej władza należy do kierowników działów (linii funkcyjnej). Kierownik Projektu (jeśli w ogóle istnieje) pełni zwykle rolę koordynatora, bez realnej władzy nad zasobami, budżetem i decyzjami. Im bardziej macierz jest „silna”, tym więcej władzy ma KP; w organizacji projektowej ma jej najwięcej — ale najmniej właśnie w funkcyjnej."
+  },
+  "2": {
+    "correct": "c",
+    "correct_text": "Tak, ale należy się spodziewać problemów z podziałem władzy między kierowników funkcyjnych a kierownika projektu",
+    "explanation": "Projekty w strukturze funkcyjnej są możliwe (często jako wewnętrzne inicjatywy), ale zasoby pozostają podległe kierownikom działów. Stąd typowy konflikt: kto decyduje o priorytetach, ludziach i budżecie — KP czy kierownik funkcyjny."
+  },
+  "3": {
+    "correct": "b",
+    "correct_text": "… powinna być optymalizowana by minimalizować koszt zgodności i niezgodności",
+    "explanation": "Jakości nie „maksymalizuje się” bez końca — optymalizuje się ją ekonomicznie: równoważy koszt osiągnięcia jakości (zgodność) z kosztem błędów i reklamacji (niezgodność). To podejście m.in. Juran’a i standardowe w zarządzaniu jakością projektu."
+  },
+  "4": {
+    "correct": "a",
+    "correct_text": "Mają zawsze zapas całkowity wynoszący 0",
+    "explanation": "Zadania na ścieżce krytycznej mają **zerowy zapas czasu (total float = 0)**. Każde opóźnienie takiego zadania opóźnia cały projekt. Nie muszą mieć najwyższego kosztu ani dotyczyć „zakresu” w sensie merytorycznym — chodzi o harmonogram."
+  },
+  "5": {
+    "correct": "b",
+    "correct_text": "jest metodą kontroli projektu",
+    "explanation": "EVM (Earned Value Management) służy do **monitorowania i kontroli** postępu projektu, łącząc zakres, czas i koszt (wskaźniki CPI, SPI, prognozy EAC itd.). Nie jest wyłącznie metodą planowania ani nie sprowadza projektu tylko do jednego wymiaru."
+  },
+  "6": {
+    "correct": "c",
+    "correct_text": "… są powodowane przez projekt, ale nie mogą być mu bezpośrednio przypisane",
+    "explanation": "Koszty pośrednie (overhead) — np. administracja, oświetlenie biura, amortyzacja — wynikają z prowadzenia projektu, ale nie da się ich przypisać do jednego pakietu prac (w przeciwieństwie do kosztów bezpośrednich). Procenty 25% czy 30% nie są uniwersalną regułą."
+  },
+  "7": {
+    "correct": "d",
+    "correct_text": "Jest to średnia ważona z wagą 4 dla czasu najbardziej prawdopodobnego",
+    "explanation": "Wzór PERT:\n\n\\[\n\nt_e = \\frac{t_o + 4t_m + t_p}{6}\n\n\\]\n\ngdzie: optymistyczny, najbardziej prawdopodobny (×4), pesymistyczny."
+  },
+  "8": {
+    "correct": "c",
+    "correct_text": "Narzędziem bezpośredniej kontroli pracowników",
+    "explanation": "EVM mierzy wydajność **projektu** (koszt, harmonogram, zakres), a nie służy do bezpośredniego „nadzorowania” poszczególnych pracowników. Ocena wydajności, prognozowanie i identyfikacja problemów — to właśnie zastosowania EVM."
+  },
+  "9": {
+    "correct": "a",
+    "correct_text": "wszystkie odpowiedzi są prawidłowe",
+    "explanation": "Macierz zaangażowania (stakeholder engagement assessment matrix) pozwala:\n\n- odróżnić interesariuszy istotnych od mniej istotnych,\n\n- uszeregować ich według ważności,\n\n- doprecyzować strategię komunikacji i zaangażowania dla każdej grupy."
+  },
+  "10": {
+    "correct": "c",
+    "correct_text": "Budżet i harmonogram zależą od zakresu",
+    "explanation": "To klasyczny **trójkąt ograniczeń** (zakres–czas–koszt): zmiana zakresu zwykle wymaga rewizji harmonogramu i budżetu. Stąd a) i b) są fałszywe, a d) też."
+  },
+  "11": {
+    "correct": "a",
+    "correct_text": "… musi zawierać dokładnie wszystkie zadania",
+    "explanation": "Obowiązuje **reguła 100%**: WBS musi obejmować całość prac projektu. Nie musi pokazywać kolejności logicznej (to rola harmonogramu/sieci), nie wymaga sztywno 3 poziomów, i **jest** niezbędna do planowania — więc c) jest fałszywe."
+  },
+  "12": {
+    "correct": "d",
+    "correct_text": "W zależności od istotności i niepewności projektu",
+    "explanation": "Częstotliwość pomiarów EVM nie jest sztywno „co miesiąc” czy „co kwartał” — zależy od skali, ryzyka i dynamiki projektu. Duży, ryzykowny projekt wymaga częstszych pomiarów niż mały, stabilny."
+  },
+  "13": {
+    "correct": "c",
+    "correct_text": "To diagramy pozwalające na rozbicie skutku na listę możliwych przyczyn",
+    "explanation": "Diagram Ishikawy („rybie ości”) to narzędzie analizy przyczynowo-skutkowej — np. dlaczego wystąpiła wada jakości. Rozbija **efekt** (głowa ryby) na kategorie przyczyn (ości)."
+  },
+  "14": {
+    "correct": "a",
+    "correct_text": "organizacji funkcyjnej",
+    "explanation": "Po projekcie pracownik wraca do swojego działu funkcyjnego — ma stałe miejsce w strukturze. W organizacji projektowej po zakończeniu projektu zespół się rozwiązuje i trzeba szukać nowego projektu lub pracy."
+  },
+  "15": {
+    "correct": "a",
+    "correct_text": "Ułatwienie planowania kosztorysu",
+    "explanation": "SOW (Opis/Zakres prac) szczegółowo opisuje, **co** ma zostać wykonane/dostarczone. Dzięki temu można realnie oszacować koszty, harmonogram i wymagania — szczególnie przy zamówieniach zewnętrznych. Ułatwia też zrozumienie zakresu, ale główny cel w kontekście SOW to precyzyjna podstawa do wyceny i realizacji."
+  },
+  "16": {
+    "correct": "b",
+    "correct_text": "przepisów BHP",
+    "explanation": "Kultura organizacyjna to wartości, zwyczaje, normy zachowań, system motywacyjny, sposób wynagradzania. Przepisy BHP to **wymogi prawne**, obowiązujące formalnie — nie element kultury, choć organizacja musi ich przestrzegać."
+  },
+  "17": {
+    "correct": "d",
+    "correct_text": "To metoda znajdowania kreatywnych rozwiązań z udziałem użytkowników",
+    "explanation": "Design Thinking jest **zorientowany na użytkownika** (empatia, prototypowanie, testy z użytkownikami). Nie zastępuje wszystkich metod ani nie pomija użytkowników — wręcz przeciwnie, opiera się na ich potrzebach."
+  },
+  "18": {
+    "correct": "b",
+    "correct_text": "Zarząd firmy realizującej projekt",
+    "explanation": "Wewnętrzni interesariusze to osoby/role **wewnątrz organizacji** wykonawcy (zarząd, zespół projektowy, sponsor). Klient, dostawcy i NGO to zazwyczaj interesariusze **zewnętrzni** (choć klient wewnętrzny przy projekcie wewnętrznym bywa wyjątkiem — w typowym zestawieniu odpowiedź to zarząd)."
+  },
+  "19": {
+    "correct": "a",
+    "correct_text": "Szczegółowa analiza ryzyka",
+    "explanation": "Karta projektu (project charter) zawiera m.in.: cel, uzasadnienie, ramowy budżet, wysokopoziomowe ryzyka, uprawnienia KP. **Szczegółowa** analiza ryzyka powstaje później, w planowaniu zarządzania ryzykiem — nie na etapie karty."
+  },
+  "20": {
+    "correct": "a",
+    "correct_text": "… może służyć do oceny jego postępów",
+    "explanation": "Kamień milowy to punkt kontrolny w czasie — **zerowy czas trwania**, znaczące zdarzenie (np. „zakończono fazę projektowania”). Służy do monitorowania postępu, ale nie „angażuje czasu” jak zwykłe zadanie."
+  },
+  "21": {
+    "correct": "d",
+    "correct_text": "Projekt jest ograniczony w czasie a proces nie",
+    "explanation": "**Projekt** — tymczasowy, unikalny, ma początek i koniec. **Proces** — powtarzalny, ciągły, operacyjny (np. produkcja seryjna). Procesy też wymagają zarządzania; projekty mają fazę zamykania."
+  },
+  "22": {
+    "correct": "b",
+    "correct_text": "Polega na określeniu liczbowego prawdopodobieństwa i wartości ryzyka wyrażonej w złotówkach",
+    "explanation": "Analiza **ilościowa** używa liczb: prawdopodobieństwo (np. 30%) i wpływ w pieniądzu (np. EMV = 50 000 zł). Skale wysokie/średnie/niskie to analiza **jakościowa**."
+  },
+  "23": {
+    "correct": "b",
+    "correct_text": "Macierz zaangażowania",
+    "explanation": "Typowe narzędzia:\n\n1. Siatka wpływ–zainteresowanie (power/interest grid),\n\n2. **Macierz zaangażowania** (engagement assessment matrix).\n\nWBS i macierz śledzenia wymagań służą innym celom (zakres, wymagania)."
+  },
+  "24": {
+    "correct": "a",
+    "correct_text": "… możemy prognozować, że ukończymy projekt poniżej zakładanego budżetu — o ile prace będą realizowane z nie mniejszą niż dotychczas wydajnością",
+    "explanation": "CPI = EV/AC. CPI > 1 oznacza, że za wydane pieniądze „zdobyliśmy” więcej wartości niż planowano — jesteśmy **pod budżetem** (wydajniej kosztowo). SPI dotyczy harmonogramu, nie kosztu."
+  },
+  "25": {
+    "correct": "d",
+    "correct_text": "Informacja o zaplanowanym koszcie prac na dany moment czasu",
+    "explanation": "PV (BCWS) = budżet przypisany do prac **zaplanowanych** do wykonania do danego momentu. To nie jest rzeczywisty wydatek (to AC), ani wartość wykonanych prac (to EV)."
+  },
+  "26": {
+    "correct": "d",
+    "correct_text": "Rzeczywiście poniesiony koszt zrealizowanych prac",
+    "explanation": "AC (ACWP) = faktycznie poniesione koszty za pracę, która została wykonana do danego momentu — niezależnie od tego, ile było zaplanowane."
+  },
+  "27": {
+    "correct": "a",
+    "correct_text": "Jest dobrą strategią, o ile wpływ i prawdopodobieństwo są jednocześnie znikomo małe",
+    "explanation": "Strategia **akceptacji** ma sens tylko przy ryzyku **zarówno** mało prawdopodobnym, **jak i** o znikomym wpływie — wtedy koszt planowania reakcji przewyższa potencjalną stratę. Samo „wpływ LUB prawdopodobieństwo” małe to za słaby warunek."
+  },
+  "28": {
+    "correct": "c",
+    "correct_text": "Wynika z konieczności odczekania czasu między zadaniami, bez zaangażowania innych zasobów",
+    "explanation": "To definicja **laga** (opóźnienia): np. schnięcie betonu 7 dni między zadaniami — czysty odstęp czasowy. Lag może też być ujemny (lead — rozpoczęcie zadania przed zakończeniem poprzednika), ale klasyczna definicja opóźnienia to właśnie c)."
+  },
+  "29": {
+    "correct": "c",
+    "correct_text": "Stosowanie etykiet jest obligatoryjne",
+    "explanation": "Prawda:\n\n- WBS nie powinien mieć nakładających się zadań (reguła 100%, brak duplikacji),\n\n- tworzenie WBS to zarządzanie zakresem,\n\n- WBS ma strukturę **hierarchiczną (drzewa)**, niekoniecznie „grafu skierowanego” w sensie sieciowej — ale **c)** jest najwyraźniej fałszywe: etykiety/kody WBS są zalecane, nie obligatoryjne prawnie."
+  },
+  "30": {
+    "correct": "b",
+    "correct_text": "Portfolio może obejmować zarówno projekty jak i programy",
+    "explanation": "**Portfolio** to zbiór projektów, programów i prac podporządkowanych strategii organizacji. Programy grupują powiązane projekty; portfolio jest **nadrzędne** względem projektów i programów — wszystkie wymagają zarządzania.\n\n---"
+  }
+}

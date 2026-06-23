@@ -1,0 +1,20 @@
+{
+  "categories": [
+    {
+      "id": "bsk",
+      "name": "Bezpieczeństwo Sieci Korporacyjnych",
+      "shortName": "BSK",
+      "questionsFile": "bsk_questions.json",
+      "explanationsFile": null,
+      "multiAnswer": true
+    },
+    {
+      "id": "ziep",
+      "name": "Zarządzanie i Ekonomia Projektów",
+      "shortName": "ZiEP",
+      "questionsFile": "ziep_questions.json",
+      "explanationsFile": "ziep_explanations.json",
+      "multiAnswer": false
+    }
+  ]
+}
